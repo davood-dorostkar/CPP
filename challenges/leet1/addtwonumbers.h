@@ -15,39 +15,48 @@ struct ListNode {
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        cout << "running add two numbers func..." << endl;
+        cout << "Running add two numbers function ..." << endl;
         int num1 = merge(l1);
         int num2 = merge(l2);
         return expand(num1 + num2);
     }
     int merge(ListNode* input)
     {
-        ListNode* l = input;
+        ListNode* list = input;
         int result =0;
-        int r = 1;
-        while(l->val != 0 || l->next != nullptr)
+        while(list)
         {
-            result += (l->val * r);
-            l = l->next;
-            r *= 10;
-            cout << result << endl;
+            result *=10;
+            result += list->val;
+            list = list->next;
         }
+        cout << result << endl;
         return result;
     }
 
     ListNode* expand(int input)
     {
-        ListNode* result = new ListNode();
-        int i = 0;
-        while(input % 10 != 0)
-        {
-            ListNode* node = new ListNode(input % 10);
-            (result+i)->next = node;
+        ListNode* head = nullptr;
+        ListNode* current = nullptr;
+        while (input != 0) {
+            if (head == nullptr) {
+                head = new ListNode(input % 10);
+                current = head;
+            } else {
+                current->next = new ListNode(input % 10);
+                current = current->next;
+            }
             input /= 10;
-            ++i;
-
         }
-        return result;
+        return head;
+    }
+    void printList(ListNode* head) const
+    {
+        while (head)
+        {
+            cout << head->val << " ";
+            head = head->next;
+        }
     }
 };
 #endif // ADDTWONUMBERS_H

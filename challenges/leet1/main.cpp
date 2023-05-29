@@ -16,8 +16,11 @@ int main()
     ListNode* m3 = new ListNode(9);
     m1->next = m2;
     m2->next = m3;
-    s.merge(n1);
-    s.merge(n2);
-//    s.addTwoNumbers(n1, n2);
+
+//    s.expand(243);
+    s.printList(s.expand(243));
+//    ListNode* result = s.addTwoNumbers(n1, m1);
+//    cout << result << endl;
+//    s.printList(result);
     return 0;
 }
