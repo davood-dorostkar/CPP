@@ -18,6 +18,7 @@ public:
         cout << "Running add two numbers function ..." << endl;
         int num1 = merge(l1);
         int num2 = merge(l2);
+//        cout << num1 << " " << num2 << endl;
         return expand(num1 + num2);
     }
     int merge(ListNode* input)
@@ -30,24 +31,29 @@ public:
             result += list->val;
             list = list->next;
         }
-        cout << result << endl;
         return result;
     }
 
     ListNode* expand(int input)
     {
-        ListNode* head = nullptr;
-        ListNode* current = nullptr;
+//        cout << "input: " << input << endl;
+        ListNode* head = new ListNode();
+        ListNode* current = new ListNode();
+//        cout << "head: " << head->val << endl;
+        if(input == 0) return head;
+//        cout << "input: " << input << endl;
         while (input != 0) {
-            if (head == nullptr) {
+            if (head->val == 0) {
                 head = new ListNode(input % 10);
                 current = head;
             } else {
                 current->next = new ListNode(input % 10);
                 current = current->next;
             }
+//            cout <<"head: "<< head->val<< " current: "<< current->val << endl;
             input /= 10;
         }
+//        cout << head->val << endl;
         return head;
     }
     void printList(ListNode* head) const
