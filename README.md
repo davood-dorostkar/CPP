@@ -1,1 +1,1 @@
-# C++ in Qt
+# C++ programming language
