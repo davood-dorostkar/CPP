@@ -1,0 +1,20 @@
+## For loop sequence
+![](https://github.com/davood-dorostkar/CPP_in_Qt/blob/main/images/for-loop.jpeg)
+
+## Switch-case
+* It only accepts `int`, `char`, `short`, `long` types
+* `break` is optional, but if you do not use, the next cases will also be executed
+* `default` is optional
+```cpp
+char operation;
+std::cin >> operation;
+
+switch (operation)
+{
+    case '+': std::cout << in1+in2 << std::endl; break;
+    case '-': std::cout << in1-in2 << std::endl; break;
+    case '*': std::cout << in1*in2 << std::endl; break;
+    case '/': std::cout << in1/in2 << std::endl; break;
+    default:std::cout << "not a valid operation"<< std::endl;
+}
+```
