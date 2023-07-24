@@ -23,6 +23,7 @@
 6. [Templates](/Tutorial/Language-Advanced/Templates.md)
 7. [Memory Management](/Tutorial/Language-Advanced/Memory.md)
 8. [Forward Declaration](/Tutorial/Language-Advanced/Forward-declaration.md)
+9. [Constructors](/Tutorial/Language-Advanced/Constructors.md)
 
 ## Build Systems
 
