@@ -8,7 +8,7 @@ fstream readingFile("input.txt");
 if(readingFIle.is_open())
 {
 
-    while( getline(readingFile, line)
+    while( getline(readingFile, line))
     {
         std::cout << line << std::endl;
     }
