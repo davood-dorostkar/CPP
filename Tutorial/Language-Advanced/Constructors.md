@@ -12,8 +12,8 @@ You can define a copy constructor in your class. It must take exactly one input,
 ```cpp
 class Cube
 {
-    int _name;
-    Cube(const Cube &c) : _name(c.name) {}
+    int name;
+    Cube(const Cube &c) : name(c.name) {}
 };
 ```
 
