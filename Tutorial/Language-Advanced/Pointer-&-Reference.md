@@ -13,7 +13,7 @@ A pointer is an address that points to the allocated location in the memory. the
 - When you change a reference's value you are changing the original value.
 - Sometimes refs and ptrs might seem the same; keep in mind that using a ptr, you will have two variables: the original var, and var that stores the address; but with refs, there is only the original var.
 
-![](https://github.com/davood-dorostkar/CPP_in_Qt/blob/main/images/ptr-ref.PNG)
+![](https://github.com/davood-dorostkar/CPP/blob/main/images/ptr-ref.PNG)
 
 ## Use Cases
 
@@ -46,7 +46,7 @@ ref = 5; // same result
 
 ## Pointer & pointer-to-pointer
 
-![](https://github.com/davood-dorostkar/CPP_in_Qt/blob/main/images/ptr-to-ptr.jpeg)
+![](https://github.com/davood-dorostkar/CPP/blob/main/images/ptr-to-ptr.jpeg)
 
 ## Pass by reference
 
