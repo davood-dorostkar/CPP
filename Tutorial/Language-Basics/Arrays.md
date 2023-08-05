@@ -13,7 +13,7 @@ void reverseArray(int arr[], int N){
 ```cpp
 int multiArray[row][col]
 ```
-![](https://github.com/davood-dorostkar/CPP_in_Qt/blob/main/images/m-dim-array.jpeg)
+![](https://github.com/davood-dorostkar/CPP/blob/main/images/m-dim-array.jpeg)
 ## Dot product
 ```cpp
 for(int i=0; i<row; i++)

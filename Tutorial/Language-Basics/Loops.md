@@ -1,6 +1,6 @@
 ## For loop sequence
 
-![](https://github.com/davood-dorostkar/CPP_in_Qt/blob/main/images/for-loop.jpeg)
+![](https://github.com/davood-dorostkar/CPP/blob/main/images/for-loop.jpeg)
 
 ## Switch-case
 
