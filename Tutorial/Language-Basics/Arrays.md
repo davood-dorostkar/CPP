@@ -1,4 +1,21 @@
+## Definition
+
+keep in mind: arrays are statically allocated in the memory:
+
+```cpp
+int var[3] = {2, 4, 6};
+```
+
+find the distance between two items (in general for each data in memory):
+
+> get the address of memory, then cast it to long (it is in OS default address type. in addition, if you print `&var`, it is in hex and not visually good)
+
+```cpp
+std::cout << (long)&var[2] - (long)&var[0] << std::endl;
+```
+
 ## Reverse an array
+
 ```cpp
 void reverseArray(int arr[], int N){
     // Your code goes here
@@ -9,12 +26,17 @@ void reverseArray(int arr[], int N){
     }
 }
 ```
+
 ## Multidimentional array
+
 ```cpp
 int multiArray[row][col]
 ```
+
 ![](https://github.com/davood-dorostkar/CPP/blob/main/images/m-dim-array.jpeg)
+
 ## Dot product
+
 ```cpp
 for(int i=0; i<row; i++)
 {
@@ -25,7 +47,9 @@ for(int i=0; i<row; i++)
     }
 }
 ```
+
 ## Sort an array
+
 ```cpp
 for(int i=0; i<size; i++)
 {
@@ -41,26 +65,31 @@ for(int i=0; i<size; i++)
     }
 }
 ```
+
 ## Pass arrays to functions
+
 there are 3 ways:
+
 ```cpp
 void arrayAsPointer(int *array, int size)
 {
-    for(int i=0; i<size; i++) 
+    for(int i=0; i<size; i++)
         std::cout<<array[i]<<" ";
 }
 ```
+
 ```cpp
 void arraySized(int array[3], int size)
 {
-    for(int i=0; i<size; i++) 
+    for(int i=0; i<size; i++)
         std::cout<<array[i]<<" ";
 }
 ```
+
 ```cpp
 void arrayUnSized(int array[], int size)
 {
-    for(int i=0; i<size; i++) 
+    for(int i=0; i<size; i++)
         std::cout<<array[i]<<" ";
 }
 ```
