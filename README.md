@@ -38,9 +38,10 @@
 4. [Encapsulation](/Tutorial/OOP/Encapsulation.md)
 5. [Polymorphism](/Tutorial/OOP/Polymorphism.md)
 
-## STL
+## Data Structures & STL
 
-1. [Vector](/Tutorial/STL/Vector.md)
+1. [Vector](/Tutorial/DS-STL/Vector.md)
+2. [Linked List](/Tutorial/DS-STL/linkedList.md)
 
 ## Qt
 
