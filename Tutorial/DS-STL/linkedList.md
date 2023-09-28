@@ -64,3 +64,12 @@ void List<type>::insertAtFront(const type &data)
     head = node;
 }
 ```
+### Operations speed
+
+| Operation | linked list | array |
+| --- | --- | --- |
+| Access a given index | O(n) | O(1) |
+| Find data | O(n) | O(n) |
+| Find data in sorted DS | O(n) | O(lg(n)) |
+| Insert item after an element | O(1) | O(n) |
+| Delete item after an element | O(1) | O(n) |
