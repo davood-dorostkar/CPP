@@ -38,7 +38,7 @@ if you want to change the list values:
 
 ```cpp
 int list[3] = {1, 2, 3};
-for(int &i : list) // here i is just a copy
+for(int &i : list) // here i is the original value
 {
     i=100;
 }
@@ -48,7 +48,7 @@ if you do not want to change original values, but want to avoid copying:
 
 ```cpp
 int list[3] = {1, 2, 3};
-for(const int &i : list) // here i is just a copy
+for(const int &i : list) // here i is the original value and not changeable
 {
     i=100;
 }
