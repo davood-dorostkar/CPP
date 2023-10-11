@@ -110,3 +110,157 @@ void BinaryTree::PostOrder(TreeNode* current)
 read every single level, one level at a time.
 
 ![](/images/level-order-traversal.png)
+
+# Binary Search Tree (BST)
+BST is an ordered B-tree capable of being used as a search structure.
+
+![](/images/BST.png)
+
+a B-tree is a BST if and only if for every node:
+
+1. nodes in the left subtree are less than itself
+2. nodes in the right subtree are greater than itself
+
+we can implement a dictionary with BST. the dictionary ADT has these functionalities:
+
+## BST Operations
+
+- find: given a key, find the data associated with it
+- insert: add new key/value
+- remove
+- empty: if the dict is empty
+
+
+### find
+worst-cast is visiting the longest path from root to a leaf (tree's height) -> much better than arrays and lists
+
+```cpp
+template <typename K, typename D>
+const D & Dictionary<K, D>::find(const K & key)
+{
+    TreeNode *& node = _find(key, head_);
+    if (node == nullptr) {throw std::runtime_error("key not found");}
+    return node->data;
+}
+
+template <typename K, typename D>
+typename Dictionary<K, D>::TreeNode *& Dictionary<K, D>::_find(const K & key, TreeNode *& cur) const
+{
+    if      (cur == nullptr)    {return cur;}
+    else if (key == cur->key)   {return cur;}
+    else if (key < cur->key)    {return _find(key, cur->left);}
+    else                        {return _find(key, cur->right);}
+}
+```
+### insert
+it is very trivial. you just need to find the location where you should add it.
+
+```cpp
+template <typename K, typename D>
+void Dictionary<K, D>::insert(const K & key, const D & data)
+{
+    TreeNode *& node = _find(key, head_);
+    node = new TreeNode(key, data);
+}
+```
+```cpp
+insert(17);
+```
+![](/images/insert-BST.png)
+
+### remove
+
+this operation is tricky. possible cases in order of difficulty are:
+
+- removing a leaf: just wipe it
+- removing a node with one child: just update its parent, like a linked list
+- removing a node with two childs
+- removing the root node
+
+when removing the root (and also for case 3), the best choice to become the new root is the IOP (in-order predecessor) which is the previous node in an in-order traversal. 
+
+We can also develop a clever way of finding the IOP. The IOP is always going to be the right-most node in the left sub-tree.
+
+We first swap the root with IOP, and then remove the new previous root (is now case 1 or 2) and the BST is still correct.
+
+```cpp
+template <typename K, typename D>
+const D & Dictionary<K, D>::remove(const K & key) 
+{
+    TreeNode *& node = _find(key, head_);
+    return _remove(node);
+}
+
+template <typename K, typename D>
+const D & Dictionary<K, D>::_remove(TreeNode *& node) 
+{
+    // Zero child remove:
+    if (node->left == nullptr && node->right == nullptr) 
+    {
+        const D & data = node->data;
+        delete(node);
+        node = nullptr;
+        return data;
+    }
+
+    // One-child (left) remove
+    else if (node->left != nullptr && node->right == nullptr) 
+    {
+        const D & data = node->data;
+        TreeNode *temp = node;
+        node = node->left;
+        delete(temp);
+        return data;
+    }
+
+    // One-child (right) remove
+    else if (node->left == nullptr && node->right != nullptr) 
+    {
+        const D & data = node->data;
+        TreeNode *temp = node;
+        node = node->right;
+        delete(temp);
+        return data;
+    }
+
+    // Two-child remove:
+    else 
+    {
+        // Find the IOP
+        TreeNode *& iop = _iop( node->left );
+        // Swap the node to remove and the IOP
+        _swap( node, iop );
+        // Remove the new IOP node that was swapped
+        return _remove( node );
+    }
+}
+
+```
+
+![](/images/iop.jpg)
+
+## BST Runtime Analysis
+For a given number `n` data elements, there are `n!` ways to put that data into a BST (for first element there are `n` options, for adding next element there are `n-1` options, ...)
+
+The best case in BST is a fully balanced BST (data is equally put into left and right), and in worst case it is like a linked list.
+
+all operations in BST are the same as `find`, because after finding the element the operation takes constant time.
+
+|        | BST (avg case) | BST (worst case) | sorted array | sorted list |
+| ------ | -------------- | ---------------- | ------------ | ----------- |
+| find   | O(log(n))      | O(n)             | O(log(n))    | O(n)        |
+| insert | O(log(n))      | O(n)             | O(n)         | O(n)        |
+| remove | O(log(n))      | O(n)             | O(n)         | O(n)        |
+
+the only algorithm that runs in log n time for both find, insert, and remove is this average case binary search tree. We can't do that with an array. We can't do that with a sorted list. 
+
+## Balanced BST
+
+### Height Balance Factor
+it is the difference in height between the left subtree and the right subtree. Ideally we want to keep that balance factor small. 
+
+### Definition
+a balanced binary search tree is going to be a binary search tree where every single node in this tree has a balance factor with a magnitude of either 0 or 1. that means the balance factor can either be -1, 0 or 1.
+
+
+
