@@ -253,14 +253,3 @@ all operations in BST are the same as `find`, because after finding the element 
 | remove | O(log(n))      | O(n)             | O(n)         | O(n)        |
 
 the only algorithm that runs in log n time for both find, insert, and remove is this average case binary search tree. We can't do that with an array. We can't do that with a sorted list. 
-
-## Balanced BST
-
-### Height Balance Factor
-it is the difference in height between the left subtree and the right subtree. Ideally we want to keep that balance factor small. 
-
-### Definition
-a balanced binary search tree is going to be a binary search tree where every single node in this tree has a balance factor with a magnitude of either 0 or 1. that means the balance factor can either be -1, 0 or 1.
-
-
-

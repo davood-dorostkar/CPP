@@ -25,11 +25,6 @@
 8. [Forward Declaration](/Tutorial/Language-Advanced/Forward-declaration.md)
 9. [Constructors](/Tutorial/Language-Advanced/Constructors.md)
 
-## Build Systems
-
-1. [CMAKE](/Tutorial/Build-Systems/CMAKE.md)
-2. [Compilers](/Tutorial/Build-Systems/Compilers.md)
-
 ## Object Oriented Programming
 
 1. [Class](/Tutorial/OOP/Class.md)
@@ -45,6 +40,13 @@
 3. [Queue](/Tutorial/DS-STL/queue.md)
 4. [Stack](/Tutorial/DS-STL/stack.md)
 5. [Tree](/Tutorial/DS-STL/tree.md)
+6. [Balanced BST / AVL Tree](/Tutorial/DS-STL/avl.md)
+7. [B-Tree](/Tutorial/DS-STL/b-tree.md)
+
+## Build Systems
+
+1. [CMAKE](/Tutorial/Build-Systems/CMAKE.md)
+2. [Compilers](/Tutorial/Build-Systems/Compilers.md)
 
 ## Qt
 
