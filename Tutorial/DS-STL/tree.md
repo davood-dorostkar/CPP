@@ -43,16 +43,16 @@ in a binary tree, every node has at most 2 children.
 - every node has a `left` and `right` child
 - the tree nodes' implementation is nearly identical to a doubly-linked list
 - `height` is more important here
-- a B-tree is `full` if and only if every node has 0 or 2 children
-- a B-tree is `perfect` if and only if every interior(not root and not a leaf) has 2 children, and all leaves are at the same level. a perfect B-tree:
+- a Binary-tree is `full` if and only if every node has 0 or 2 children
+- a Binary-tree is `perfect` if and only if every interior(not root and not a leaf) has 2 children, and all leaves are at the same level. a perfect Binary-tree:
 
 ![](/images/perfect-btree.png)
 
-- a B-tree is `complete` if and only if the tree is perfect up until the last level (neglecting the last level, you have a perfect tree), and all leaf nodes in the last level are pushed to the left (they are at the most left place they can be). a complete B-tree:
+- a Binary-tree is `complete` if and only if the tree is perfect up until the last level (neglecting the last level, you have a perfect tree), and all leaf nodes in the last level are pushed to the left (they are at the most left place they can be). a complete Binary-tree:
 
 ![](/images/complete-btree.png)
 
-- a full B-tree is not necessarily complete; a complete B-tree is not neccesarily full!
+- a full Binary-tree is not necessarily complete; a complete Binary-tree is not neccesarily full!
 
 # Tree Traversal
 visiting every node in the tree exactly once.
@@ -112,11 +112,11 @@ read every single level, one level at a time.
 ![](/images/level-order-traversal.png)
 
 # Binary Search Tree (BST)
-BST is an ordered B-tree capable of being used as a search structure.
+BST is an ordered Binary-tree capable of being used as a search structure.
 
 ![](/images/BST.png)
 
-a B-tree is a BST if and only if for every node:
+a Binary-tree is a BST if and only if for every node:
 
 1. nodes in the left subtree are less than itself
 2. nodes in the right subtree are greater than itself

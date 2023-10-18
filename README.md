@@ -42,6 +42,7 @@
 5. [Tree](/Tutorial/DS-STL/tree.md)
 6. [Balanced BST / AVL Tree](/Tutorial/DS-STL/avl.md)
 7. [B-Tree](/Tutorial/DS-STL/b-tree.md)
+8. [Heap](/Tutorial/DS-STL/heap.md)
 
 ## Build Systems
 
