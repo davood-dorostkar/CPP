@@ -255,6 +255,20 @@ struct hash<std::pair<int, int>> {
    }
 };
 ```
+## Memoization (using hash tables)
+
+> We would like to cache any partial calculation results that could be reused efficiently while solving the same overall problem.
+
+it’s a common problem-solving technique to break larger problems into smaller
+ones. the process must eventually reach a base case or recursion will never end. Sometimes, a problem breaks down in such a way that identical `subproblems` appear multiple times in its structure. There may be a way to index the distinct problems so that when the same essential problem comes up again, its previous result can simply be looked up from `memory`.
+
+When we systematically label and record partial results, making sure to never recalculate anything needlessly, this is popularly called **memoization**.
+
+[here](/Courses/Accelerated_CS/03_Unordered_DS/Week1-project/UnorderedMapExercises.cpp) is an example of memoization implementation. (look at function `memoizedLongestPalindromeLength`)
+
+> **extra**:  
+> it is sometimes possible to identify ahead of time the order of dependency among the subproblems in the overall structural pattern. In those situations, you could also potentially preallocate a static amount of memory for the partial results, and then explicitly calculate the subproblems in the
+order that maximizes the reuse of information. This analysis and problem-solving strategy in general is called **dynamic programming**. [read more](http://jeffe.cs.illinois.edu/teaching/algorithms/)
 
 
 
