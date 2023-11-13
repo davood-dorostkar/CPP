@@ -217,3 +217,44 @@ else
 }
 ```
 
+### hashing in STL
+
+> The general principle will be to avoid literally defining our own hashing
+function, and instead rely on a known hashing function we already have access to.
+
+The Standard Template Library provides hashing support for many of the primitive
+types you would want to use as keys, but it won’t initially hash a custom class type you define yourself. not even a generic pair type.
+
+> In `<functional>`, STL provides `std::hash`, which is the basis for how types like `int` and `std::string` are hashed. Technically, the type `std::hash` is a “function object,” which means it’s an object type that is intended to be applied just as if it were a function, by overriding the () syntax. So, this
+is a class type that represents a hashing function. By default, STL containers like `std::unordered_map` that require a hashing function use `std::hash` internally to hash the key type.
+
+`std::hash` is templated to support some types by default, but not all. So, we need to extend the template to support our custom type. This is called **template specialization** in C++, and it has a special syntax beginning with a strange-looking, empty template argument list: `template <>`.
+
+an example of hashing a pair of integers:
+
+```cpp
+#include <functional>
+  // The "template <>" syntax indicates that we are specializing an existing
+  // template for std::hash.
+template <>
+struct hash<std::pair<int, int>> {
+   // The () operator definition is where we will essentially define
+   // our custom hashing function, and it returns the actual hash
+   // as a std::size_t value (which is an integral type).
+   std::size_t operator() (const std::pair<int, int>& p) const {
+
+   // We know that std::string has a well-defined hasher already,
+   // so we'll turn our pair of ints into a unique string representation,
+   // and then just hash that. We'll turn each integer into a string
+   // and concatenate them with "##" in the middle, which should make
+   // a unique string for any given pair of ints.
+   std::string uniqueIntPairString = std::to_string(p.first) + "##" + std::to_string(p.second);
+
+   std::hash<std::string> stringHasher;
+   return stringHasher(uniqueIntPairString);
+   }
+};
+```
+
+
+

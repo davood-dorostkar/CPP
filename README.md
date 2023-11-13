@@ -44,6 +44,7 @@
 7. [B-Tree](/Tutorial/DS-STL/b-tree.md)
 8. [Heap](/Tutorial/DS-STL/heap.md)
 9. [Hash](/Tutorial/DS-STL/hash.md)
+10. [Pair](/Tutorial/DS-STL/pair.md)
 
 ## Build Systems
 
