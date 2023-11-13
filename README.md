@@ -45,6 +45,7 @@
 8. [Heap](/Tutorial/DS-STL/heap.md)
 9. [Hash](/Tutorial/DS-STL/hash.md)
 10. [Pair](/Tutorial/DS-STL/pair.md)
+11. [Disjoint Set](/Tutorial/DS-STL/disjointSet.md)
 
 ## Build Systems
 
