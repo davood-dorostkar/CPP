@@ -1,4 +1,7 @@
 # Disjoint Set
+A list of elements, some of them grouped together.
+
+> Two different disjoint sets by definition can never share the same value.
 
 ## Set indentity
 the identity of each set is simply the value of its first element.
@@ -15,7 +18,7 @@ when merging two sets, we must update the set indentity for each element in the 
 
 ## Implementation-Uptree
 
-each element points to `-1` if it is not union-ed to something else yet. after union 3 to 0, you see that now 3 points to 0. it makes a tree like structure that all point upward. (need more reading)
+each element points to `-1` if it is not union-ed to something else yet. after union 3 to 0, you see that now 3 points to 0. it makes a tree like structure that all point upward. 
 
 ![](/images/uptree.png)
 
@@ -50,7 +53,7 @@ one downside about union by height, is the height of every single element in chi
 
 ### Union by size
 
-instead of storing the height at every single root identity node, we're going to store the size of elements in that set.
+instead of storing the height at every single root identity node, we're going to store the size of elements in that set (`-s-1`).
 
 In unioning by size, we're able to build up this tree to be an absolutely great tree that's always going to ensure that the height of the tree increases it with as few nodes as possible every step of the way.
 
@@ -69,6 +72,8 @@ every time we do a fine algorithm, we are compressing the path to be smaller, an
 the running time of a disjoint set is not `O(1)`, but still is one of the best running times we ever see in computer science. The running time of this algorithm is something called the iterated log (`log*`).
 
 ![](/images/iterated-log.png)
+
+> example: lg*(2^64) = 1 + lg*(64) = 1 + 1 + lg*(6) = 1+ 1 + 1 + lg*(~2.6) = 1 + 1 + 1 + 1 + lg*(1.4) = 1 + 1 + 1 + 1 + 1 + lg*(0.5) = 5
 
 2^65,000 is an absolute gigantic number. The iterated log of that is 5. This is so, so, so close to constant time. 
 
