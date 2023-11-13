@@ -134,10 +134,86 @@ we want to use a tree-like structure if we ever need range finding or nearest ne
 ## Hash tables in STL
 A `map`, in fact, is an implementation of a red-black tree, so these operations are going to have a `log(n)` running time. a red-black tree is another kind of balanced tree that has similar performance to an AVL tree.
 
+It maintains keys in a sorted order as a result, which is desirable sometimes, such as when you want to iterate over the keys in the same order repeatedly
+
+
+
 ![](/images/std-map-dict.png)
 
-An `Unordered map` is the hash table implementation in C++, considering that hash tables do not have range finding abilities.
-
-we have different functions because we have a hash function table like load factors. 
+An `Unordered map` is the hash table implementation in C++, considering that hash tables do not have range finding abilities. here, we have different functions because we have a hash function, like load factors. sometimes `unordered_map` is simply refered to as `map` for convenience.
 
 ![](/images/unordered-map-dict.png)
+
+### Syntax
+```cpp
+#include <unordered_map>
+
+std::unordered_map<std::string, int> myMap;
+```
+
+both lookups and assignments using `[]` operator:
+```cpp
+myMap["five"] = 5;
+
+std::cout << myMap["five"] << std::endl; // output: 5
+```
+
+### Issues with [ ]
+1.  `[ ]` can only be used on non-const instances of a map, because it
+returns a direct reference to the mapped value item that it found (and that could be used to modify the
+entry).
+2. if the key item doesn’t exist, it will be created as soon as you refer to it with [], and initialized with some default value.
+
+### Resolving issue
+1. using `count()`
+
+   it only returns 0 (not found) or 1 (found).
+
+```cpp
+std::cout << "Map size: " << myMap.size() << std::endl;
+
+if (myMap.count("five")) 
+{
+   std::cout << "Value: " << myMap["five"] << std::endl;
+}
+```
+   it is not optimal because it does the search twice. in addition, it still has problems if the input map is const.
+
+2. using `at()`
+   
+   this is a bit complicated; `at` will throw an exception if the key is not found, instead of modifying the map.
+
+```cpp
+std::unordered_map<std::string, int> mymap;
+mymap["a"] = 1;
+mymap["b"] = 2;
+mymap["c"] = 3;
+
+try
+{
+    std::cout << mymap.at("s") << std::endl;
+}
+catch (const std::out_of_range &e)
+{
+    std::cout << "Key not found: " << e.what() << std::endl;
+}
+```
+
+1. using `find()`
+   
+   this is most convenient. actually returns an iterator type, which is like a special pointer. The iterator points to a key-value pair found, or otherwise to the map’s end iterator.
+
+```cpp
+int it = myMap.find(key);
+
+if (it != myMap.end())
+{
+   std::cout << it->second << std::endl;
+}
+
+else
+{
+   std::cout << "not found" << std::endl;
+}
+```
+
