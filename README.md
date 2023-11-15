@@ -49,6 +49,13 @@
 12. [Graph](/Tutorial/DS-STL/graph.md)
 13. [Tuple](/Tutorial/DS-STL/tuple.md)
 
+## Algorithms
+
+1. Graph Traversal
+   1. [BFS & DFS](/Tutorial/Algorithms/bfs.md)
+2. Minimum Spanning Trees (MST)
+   1. [BFS & DFS](/Tutorial/Algorithms/bfs.md)
+
 ## Build Systems
 
 1. [CMAKE](/Tutorial/Build-Systems/CMAKE.md)
