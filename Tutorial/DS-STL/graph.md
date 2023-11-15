@@ -109,7 +109,7 @@ This is a crazy mess of pointers, complicated to think about an implement. But s
 
 ### Performance
 
-| in O()            | edge list | adj matrix | adj list             |
+| in terms of O()   | edge list | adj matrix | adj list             |
 | ----------------- | --------- | ---------- | -------------------- |
 | space             | $n+m$ ✅   | $n^2$      | $n+m$  ✅             |
 | insertVertex(v)   | 1 ✅       | $n$        | 1 ✅                  |
@@ -120,3 +120,33 @@ This is a crazy mess of pointers, complicated to think about an implement. But s
 | areAdjacent(v,w)  | $m$       | 1 ✅        | $min(deg(v),deg(w))$ |
 
 we see the adjacency matrix is best if we care about the areAdjacent operation. But on the other hand, if we care about inserting and removing vectors as well as checking out the list of all of the incident edges, we can see the ideal running time is for an adjacency list or in some cases, just as great for an edge list. 
+
+## C++ Implementation
+
+### std::unordered_set
+
+A set contains value copies of objects, and it contains no duplicates; inserting
+the same item twice has no effect. In C++, the `std::unordered_set` is used for this purpose. Unlike the `unordered_map` type, the keys for an unordered set do not have associated values. We only care whether a given key has been
+inserted or not.
+
+```cpp
+std::unordered_set<int> favoriteNumbers;
+
+favoriteNumbers.insert(7);
+favoriteNumbers.insert(42);
+favoriteNumbers.insert(42); // no effect
+
+favoriteNumbers.size(); // size of set
+favoriteNumbers.empty(); // is the set empty?
+favoriteNumbers.count(42); // does 42 exist?
+favoriteNumbers.erase(42); // remove item
+```
+
+### Other options for a set
+
+hashed containers that STL offers may not be optimal in some cases. 
+- There does also exist an ordered type `std::set` which is based on a binary tree implementation instead of hashing, and consequently uses the `<` and `==` operators to arrange items instead of `std::hash` and `==`.
+- It is also possible to use any of the other ordered STL containers such as `std::vector` as a general purpose ordered set (as long as you maintain them in a sorted order).
+- there are some utility functions in `<algorithm>` that can let you compute set union and intersection efficiently.
+
+> In your real-world projects, you would want to profile the performance of several options and see what works best. 
