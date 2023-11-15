@@ -25,7 +25,7 @@ A **cycle** is a path that starts and ends at the same node.
 
 A **simple graph** Is a graph that has no **self loops** and no **multi edges**. 
 
-**Subgraph** is a subset of a graph that contain all of the vertices and all of the edges in that particular subset.
+**Subgraph** is a subset of a graph that contain all of the vertices and all of the edges in that particular subset. it might be also referred as **components**
 
 ![](/images/graph.png)
 
