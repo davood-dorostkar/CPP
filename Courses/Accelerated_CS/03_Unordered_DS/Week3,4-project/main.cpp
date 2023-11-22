@@ -61,7 +61,7 @@ int main()
   srand(time(0));
 
   // Run the informal tests
-  // informalTests();
+  informalTests();
   // demoRunner();
 
   return 0;
@@ -92,7 +92,7 @@ void informalTests()
   // (The output will be very verbose.)
   constexpr bool doEx1Tests = false;
   constexpr bool doEx2Tests = false;
-  constexpr bool doEx3Tests = false;
+  constexpr bool doEx3Tests = true;
   // Some of the tests may take a few seconds to process. If that is annoying,
   // you can temporarily disable them by setting this to false:
   constexpr bool doEx3SlowTests = true; // requires doEx3Tests == true
