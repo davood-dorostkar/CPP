@@ -52,9 +52,10 @@
 ## Algorithms
 
 1. Graph Traversal
-   1. [BFS & DFS](/Tutorial/Algorithms/bfs.md)
+   - [BFS & DFS](/Tutorial/Algorithms/bfs.md)
 2. Minimum Spanning Trees (MST)
-   1. [BFS & DFS](/Tutorial/Algorithms/bfs.md)
+   - [Kruskal's & Prim's](/Tutorial/Algorithms/mst.md)
+3. [Dijkstra](/Tutorial/Algorithms/dijkstra.md)
 
 ## Build Systems
 
