@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Davood/Documents/Code/CPP/Code_Challenges/chg2",
-      "program": "c:/Users/Davood/Documents/Code/CPP/Code_Challenges/chg2/build/Debug/outDebug",
+      "cwd": "c:/Users/Davood/Documents/Code/CPP/Code_Challenges",
+      "program": "c:/Users/Davood/Documents/Code/CPP/Code_Challenges/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
