@@ -5,6 +5,60 @@
 - Custom constructor: a user-defined constructor with inputs
   > if any kind of custom constructors are defined, no automatic constructor is defined
 
+## Initializer List
+In C++, when you create an object, you can pass arguments to its constructor using an initializer list. 
+```cpp
+#include <iostream>
+#include <string>
+
+class MyClassWithMember {
+private:
+    int memberVariable1;
+    int memberVariable2;
+
+public:
+    MyClassWithMember(int value1, int value2)
+        : memberVariable1(value1),
+        : memberVariable2(value2)
+    {
+        // Constructor body (if needed)
+    }
+};
+
+
+MyClassWithMember obj1(42, 3); // Instantiation
+```
+
+## Initilizer List with Parent Class
+In C++, when you have a class that inherits from another class, you can use the constructor initializer list to specify how the base class constructor should be called. This allows you to provide any necessary arguments to the base class constructor.
+```cpp
+class MyBaseClass {
+private:
+    std::string baseMessage;
+public:
+    MyBaseClass(const std::string& message)
+        : baseMessage(message)
+    {
+        // Constructor body (if needed)
+    }
+};
+
+class MyDerivedClass : public MyBaseClass {
+private:
+    int derivedValue;
+public:
+    MyDerivedClass(const std::string& message, int value)
+        : MyBaseClass(message),  // Initialize MyBaseClass using an initializer list
+          derivedValue(value)     // Initialize derivedValue using an initializer list
+    {
+        // Constructor body (if needed)
+    }
+};
+
+
+MyDerivedClass obj2("Hello from Base", 10); // Instantiation
+```
+
 ## Copy Constructor
 
 You can define a copy constructor in your class. It must take exactly one input, which is a reference to the same object type.
