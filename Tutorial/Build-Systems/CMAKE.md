@@ -15,7 +15,7 @@ set(name something)
 ```
 `something` can be an address  
 
-### Add existing libraries insie the system pad
+### Add existing libraries inside the system path
 ```cmake
 find_package(Qt5Core)
 ```
