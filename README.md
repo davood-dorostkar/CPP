@@ -67,6 +67,7 @@
 1. [Add Icon](/Tutorial/Qt/Qt_Add-Application-Icon.md)
 2. [Make Executable In Windows](/Tutorial/Qt/Qt_Make-executable-in-windows.md)
 3. [Qt Test Framework](/Tutorial/Qt/Qt-test-framework.md)
+4. [Qt Best Practices](/Tutorial/Qt/best-practice.md)
 
 ## Tools
 
