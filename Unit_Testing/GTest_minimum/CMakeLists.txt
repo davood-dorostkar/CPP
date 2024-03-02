@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.5)
+project(try_googletest LANGUAGES CXX)
+include(cmake/UpdateSubmodules.cmake)
+include(CTest)
+add_subdirectory(external)
+add_subdirectory(project)
