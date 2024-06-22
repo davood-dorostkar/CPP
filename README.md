@@ -24,6 +24,7 @@
 7. [Memory Management](/Tutorial/Language-Advanced/Memory.md)
 8. [Forward Declaration](/Tutorial/Language-Advanced/Forward-declaration.md)
 9. [Constructors](/Tutorial/Language-Advanced/Constructors.md)
+10. [Smart Pointers](/Tutorial/Language-Advanced/smart-pointers.md)
 
 ## Object Oriented Programming
 
