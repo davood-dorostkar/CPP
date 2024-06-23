@@ -108,3 +108,99 @@ int main() {
     return 0;
 }
 ```
+## Example
+```cpp
+#include <iostream>
+#include <memory>
+#include <unordered_map>
+#include <string>
+
+class Resource {
+public:
+    Resource(const std::string& id) : id_(id) {
+        std::cout << "Resource " << id_ << " created." << std::endl;
+    }
+
+    ~Resource() {
+        std::cout << "Resource " << id_ << " destroyed." << std::endl;
+    }
+
+    void use() {
+        std::cout << "Using resource " << id_ << std::endl;
+    }
+
+private:
+    std::string id_;
+};
+
+class ResourceManager {
+public:
+    ~ResourceManager() {
+        std::cout << "ResourceManager destroyed. Releasing resources." << std::endl;
+    }
+
+    void addUniqueResource(const std::string& id) {
+        uniqueResources_[id] = std::make_unique<Resource>(id);
+    }
+
+    void addSharedResource(const std::string& id) {
+        std::shared_ptr<Resource> ptr = std::make_shared<Resource>(id);
+        sharedResources_[id] = ptr;
+    }
+
+    void useResource(const std::string& id) {
+        auto uit = uniqueResources_.find(id);
+        if (uit != uniqueResources_.end()) {
+            uit->second->use();
+        } else {
+            auto sit = sharedResources_.find(id);
+            if (sit != sharedResources_.end()) {
+                sit->second->use();
+            } else {
+                std::cout << "Resource " << id << " not found." << std::endl;
+            }
+        }
+    }
+
+    std::shared_ptr<Resource> getSharedResource(const std::string& id) {
+        auto sit = sharedResources_.find(id);
+        if (sit != sharedResources_.end()) {
+            return sit->second;
+        } else {
+            std::cout << "Shared resource " << id << " not found." << std::endl;
+            return nullptr;
+        }
+    }
+
+private:
+    std::unordered_map<std::string, std::unique_ptr<Resource>> uniqueResources_;
+    std::unordered_map<std::string, std::shared_ptr<Resource>> sharedResources_;
+};
+
+int main() {
+    ResourceManager manager;
+
+    manager.addUniqueResource("unique1");
+    manager.addUniqueResource("unique2");
+    manager.addSharedResource("shared1");
+    manager.addSharedResource("shared2");
+
+    manager.useResource("unique1");
+    manager.useResource("shared1");
+
+    {
+        std::shared_ptr<Resource> sharedPtr = manager.getSharedResource("shared1");
+        if (sharedPtr) {
+            sharedPtr->use();
+        }
+    } // sharedPtr goes out of scope but "shared1" is not destroyed since manager still holds a shared pointer
+
+    manager.useResource("unique1");
+    manager.useResource("shared1");
+
+    // Demonstrate resource not found
+    manager.useResource("unique3");
+
+    return 0;
+}
+```
