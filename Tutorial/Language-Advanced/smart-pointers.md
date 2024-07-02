@@ -108,7 +108,86 @@ int main() {
     return 0;
 }
 ```
-## Example
+### Important Notes
+- Weak pointers allow access to an object without owning it, avoiding the problem of preventing the object from being deleted when it is no longer needed.
+- there are great features for weak pointer, including converting a weak pointer to a shared pointer using the `lock` method, checking if the object is still valid with `expired`, and understanding reference counts with `use_count`.
+```cpp
+#include <iostream>
+#include <memory>
+
+struct Object
+{
+    ~Object() { std::cout << "Deleted object\n"; }
+};
+
+struct Manager
+{
+    std::weak_ptr<Object> Obj;
+
+    void Func()
+    {
+        if (auto obj = Obj.lock())
+        {
+            std::cout << "object exists so locked\n";
+        }
+
+        if (Obj.expired())
+        {
+            std::cout << "object is already expired\n";
+        }
+
+        std::cout << Obj.use_count() << std::endl;
+
+    }
+};
+
+Manager manager;
+
+int main()
+{
+
+    {
+    std::shared_ptr<Object> obj = std::make_shared<Object>();
+    manager.Obj = obj;
+    manager.Func();
+    }
+
+    manager.Func();
+
+}      
+```
+  
+- **Advantages over Raw Pointers**: Weak pointers prevent crashes and undefined behavior caused by accessing freed memory, which is a risk with raw pointers.
+- **Cyclical Dependency Management**: Weak pointers are crucial in scenarios where objects reference each other, preventing memory leaks caused by circular references.
+‍‍‍```cpp
+#include <iostream>
+#include <memory>
+
+struct B; // forward declaration
+
+struct A {
+    std::shared_ptr<B> b_ptr;
+    ~A() { std::cout << "A destroyed" << std::endl; }
+};
+
+struct B {
+    std::weak_ptr<A> a_ptr; // use weak_ptr to break the cycle
+    ~B() { std::cout << "B destroyed" << std::endl; }
+};
+
+int main() {
+    auto a = std::make_shared<A>();
+    auto b = std::make_shared<B>();
+
+    a->b_ptr = b;
+    b->a_ptr = a;
+
+    // if both a and b were shared pointers, none of them would be destroyed
+    return 0;
+}
+
+```
+## Complete Example
 ```cpp
 #include <iostream>
 #include <memory>
