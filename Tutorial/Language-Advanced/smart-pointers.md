@@ -126,7 +126,7 @@ struct Manager
 
     void Func()
     {
-        if (auto obj = Obj.lock())
+        if (auto obj = Obj.lock()) // here obj will be an std::shared_ptr<Object>; lock helps in multithreading situations
         {
             std::cout << "object exists so locked\n";
         }
