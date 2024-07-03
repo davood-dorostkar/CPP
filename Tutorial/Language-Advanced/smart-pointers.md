@@ -11,6 +11,7 @@ smart pointers are wrappers around raw pointers, except they handle memory alloc
 std::unique_ptr<int> ptr(new int());
 std::unique_ptr<int> ptr = make_unique<int>();
 ```
+### Example
 ```cpp
 #include <iostream>
 #include <memory>  
@@ -74,31 +75,6 @@ int main() {
 }
 ```
 
-```cpp
-#include <iostream>
-#include <memory>
-
-class MyClass {
-public:
-    MyClass() { std::cout << "MyClass Constructor\n"; }
-    ~MyClass() { std::cout << "MyClass Destructor\n"; }
-    void display() { std::cout << "MyClass Display\n"; }
-};
-
-int main() {
-    std::shared_ptr<MyClass> ptr1 = std::make_shared<MyClass>();
-    std::shared_ptr<MyClass> ptr2 = ptr1;  // ptr2 shares ownership with ptr1
-
-    std::cout << "Reference count: " << ptr1.use_count() << "\n";  // Output: 2
-
-    ptr1->display();
-    ptr2->display();
-
-    // Both ptr1 and ptr2 will be destroyed automatically, and the MyClass instance will be deleted
-    return 0;
-}
-
-```
 ## std::weak_ptr
 - just like the shared pointer, but it is not included in the reference count. so the last shared pointer will free the memory even if there is still a weak pointer left.
 - you can define it with assigning to a shared pointer.
