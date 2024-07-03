@@ -24,7 +24,10 @@
 7. [Memory Management](/Tutorial/Language-Advanced/Memory.md)
 8. [Forward Declaration](/Tutorial/Language-Advanced/Forward-declaration.md)
 9. [Constructors](/Tutorial/Language-Advanced/Constructors.md)
-10. [Smart Pointers](/Tutorial/Language-Advanced/smart-pointers.md)
+
+## Modern C++
+
+1. [Smart Pointers](/Tutorial/Modern/smart-pointers.md)
 
 ## Object Oriented Programming
 
@@ -70,7 +73,7 @@
 3. [Qt Test Framework](/Tutorial/Qt/Qt-test-framework.md)
 4. [Qt Best Practices](/Tutorial/Qt/best-practice.md)
 
-## Tools
+## Misc
 
 1. [Math](/Tutorial/Tools/Math.md)
 2. [Time With Chrono](/Tutorial/Tools/Time-with-chrono.md)
