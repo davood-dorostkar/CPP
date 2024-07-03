@@ -2,8 +2,8 @@
 smart pointers are wrappers around raw pointers, except they handle memory allocation automatically. they remove the need to `delete` pointers manually.
 
 ## std::unique_ptr
-- it is a scoped pointer. meaning it will automatically removed if it goes out of scope.
-- it cannot be copied. so no more than 1 object cannot point to the same memory location. because when the first object is removed, the second object will remain dangling.
+- it is a scoped pointer. meaning it will be automatically removed if it goes out of scope.
+- it cannot be copied. so no more than 1 object can point to the same memory location. because when the first object is removed, the second object will remain dangling.
 - you can only move the ownership to another object.
 - `std::make_unique` is the analogy for `new`
 - two ways of defining (the second is preferred):
