@@ -51,6 +51,29 @@ int main() {
 std::shared_ptr<int> ptr(new int());
 std::shared_ptr<int> ptr = make_shared<int>();
 ```
+- Converting a `unique_ptr` to a `shared_ptr` is a common need when you start with exclusive ownership and then want to allow shared ownership. The correct way is by using `std::move`. This transfers ownership from the `unique_ptr` to the `shared_ptr`. After this operation, the unique_ptr will no longer own the resource (it becomes empty).
+```cpp
+#include <memory>
+#include <iostream>
+
+int main() {
+    // Create a unique_ptr
+    std::unique_ptr<int> uptr = std::make_unique<int>(10);
+    
+    // Convert unique_ptr to shared_ptr
+    std::shared_ptr<int> sptr = std::move(uptr);
+    
+    // Now sptr owns the resource, uptr is empty
+    if (!uptr) {
+        std::cout << "uptr is now empty" << std::endl;
+    }
+    
+    std::cout << "sptr owns the resource: " << *sptr << std::endl;
+    
+    return 0;
+}
+```
+
 ```cpp
 #include <iostream>
 #include <memory>
@@ -79,36 +102,6 @@ int main() {
 ## std::weak_ptr
 - just like the shared pointer, but it is not included in the reference count. so the last shared pointer will free the memory even if there is still a weak pointer left.
 - you can define it with assigning to a shared pointer.
-```cpp
-
-#include <iostream>
-#include <memory>
-
-class MyClass {
-public:
-    MyClass() { std::cout << "MyClass Constructor\n"; }
-    ~MyClass() { std::cout << "MyClass Destructor\n"; }
-    void display() { std::cout << "MyClass Display\n"; }
-};
-
-int main() {
-    std::shared_ptr<MyClass> ptr1 = std::make_shared<MyClass>();
-    std::weak_ptr<MyClass> weakPtr = ptr1;  // weakPtr does not increase the reference count
-
-    std::cout << "Reference count: " << ptr1.use_count() << "\n";  // Output: 1
-
-    if (auto sharedPtr = weakPtr.lock()) {  // Convert weakPtr to sharedPtr if the object still exists
-        sharedPtr->display();
-        std::cout << "Reference count: " << ptr1.use_count() << "\n";  // Output: 2
-    } else {
-        std::cout << "Object no longer exists\n";
-    }
-
-    // ptr1 will be destroyed, and the MyClass instance will be deleted
-    return 0;
-}
-```
-### Important Notes
 - Weak pointers allow access to an object without owning it, avoiding the problem of preventing the object from being deleted when it is no longer needed.
 - there are great features for weak pointer, including converting a weak pointer to a shared pointer using the `lock` method, checking if the object is still valid with `expired`, and understanding reference counts with `use_count`.
 ```cpp
@@ -159,7 +152,8 @@ int main()
   
 - **Advantages over Raw Pointers**: Weak pointers prevent crashes and undefined behavior caused by accessing freed memory, which is a risk with raw pointers.
 - **Cyclical Dependency Management**: Weak pointers are crucial in scenarios where objects reference each other, preventing memory leaks caused by circular references.
-‍‍‍```cpp
+‍‍‍
+```cpp
 #include <iostream>
 #include <memory>
 
@@ -187,7 +181,7 @@ int main() {
 }
 
 ```
-## Complete Example
+## Smart Pointers Example
 ```cpp
 #include <iostream>
 #include <memory>
