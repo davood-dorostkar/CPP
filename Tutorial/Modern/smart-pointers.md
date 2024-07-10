@@ -11,6 +11,15 @@ smart pointers are wrappers around raw pointers, except they handle memory alloc
 std::unique_ptr<int> ptr(new int());
 std::unique_ptr<int> ptr = make_unique<int>();
 ```
+- `reset`:
+
+    - **Release the current object**: If called with no arguments, reset releases the ownership of the current object and deletes it.
+    - **Take ownership of a new object**: If called with a raw pointer argument, reset deletes the current object (if any) and takes ownership of the new object.
+   ```cpp
+    std::unique_ptr<int> uptr = std::make_unique<int>(10);
+    uptr.reset();  // Releases and deletes the currently managed object.
+    uptr.reset(new int(20));  // Now uptr manages a new integer with value 20.
+   ```
 ### Example
 ```cpp
 #include <iostream>
@@ -47,12 +56,22 @@ int main() {
 - the memory is only freed when the reference count is empty. otherwise it will remain.
 - it can be copied.
 - `std::make_shared` is the analogy for `new`
-- - two ways of defining (the second is preferred):
-```cpp
-std::shared_ptr<int> ptr(new int());
-std::shared_ptr<int> ptr = make_shared<int>();
-```
+- two ways of defining (the second is preferred):
+    ```cpp
+    std::shared_ptr<int> ptr(new int());
+    std::shared_ptr<int> ptr = make_shared<int>();
+    ```
 - Converting a `unique_ptr` to a `shared_ptr` is a common need when you start with exclusive ownership and then want to allow shared ownership. The correct way is by using `std::move`. This transfers ownership from the `unique_ptr` to the `shared_ptr`. After this operation, the unique_ptr will no longer own the resource (it becomes empty).
+- `reset`:
+
+    - **Release the current object**: If called with no arguments, reset decrements the reference count of the currently managed object and releases it if this was the last reference.
+    - **Take ownership of a new object**: If called with a raw pointer argument, reset decrements the reference count of the current object (if any), deletes it if there are no other references, and takes ownership of the new object.
+   ```cpp
+    std::shared_ptr<int> sptr = std::make_shared<int>(10);
+    sptr.reset();  // Releases the current object if this was the last reference.
+    sptr.reset(new int(20));  // Now sptr manages a new integer with value 20.
+    ```
+### Example
 ```cpp
 #include <memory>
 #include <iostream>
@@ -80,52 +99,21 @@ int main() {
 - you can define it with assigning to a shared pointer.
 - Weak pointers allow access to an object without owning it, avoiding the problem of preventing the object from being deleted when it is no longer needed.
 - there are great features for weak pointer, including converting a weak pointer to a shared pointer using the `lock` method, checking if the object is still valid with `expired`, and understanding reference counts with `use_count`.
+- Both `wp.lock()` and `wp.expired()` are correct methods to check the validity of a std::weak_ptr. `wp.lock()` is typically preferred when you need to use the object, as it provides a std::shared_ptr that can be used directly. `wp.expired()` is useful when you only need to check the validity without accessing the object.
 ```cpp
-#include <iostream>
-#include <memory>
+if (auto sp = wp.lock()) {
+    // wp is valid
+} else {
+    // wp is expired
+}
 
-struct Object
-{
-    ~Object() { std::cout << "Deleted object\n"; }
-};
+if (!wp.expired()) {
+    // wp is valid
+} else {
+    // wp is expired
+}
 
-struct Manager
-{
-    std::weak_ptr<Object> Obj;
-
-    void Func()
-    {
-        if (auto obj = Obj.lock()) // here obj will be an std::shared_ptr<Object>; lock helps in multithreading situations
-        {
-            std::cout << "object exists so locked\n";
-        }
-
-        if (Obj.expired())
-        {
-            std::cout << "object is already expired\n";
-        }
-
-        std::cout << Obj.use_count() << std::endl;
-
-    }
-};
-
-Manager manager;
-
-int main()
-{
-
-    {
-    std::shared_ptr<Object> obj = std::make_shared<Object>();
-    manager.Obj = obj;
-    manager.Func();
-    }
-
-    manager.Func();
-
-}      
-```
-  
+```  
 - **Advantages over Raw Pointers**: Weak pointers prevent crashes and undefined behavior caused by accessing freed memory, which is a risk with raw pointers.
 - **Cyclical Dependency Management**: Weak pointers are crucial in scenarios where objects reference each other, preventing memory leaks caused by circular references.
 ‍‍‍
@@ -156,6 +144,47 @@ int main() {
     return 0;
 }
 
+```
+### Example
+```cpp
+#include <iostream>
+#include <memory>
+
+struct Object
+{
+    ~Object() { std::cout << "Deleted object\n"; }
+};
+
+struct Manager
+{
+    std::weak_ptr<Object> Obj;
+
+    void Func()
+    {
+        if (auto obj = Obj.lock()) // here obj will be an std::shared_ptr<Object>; lock helps in multithreading situations
+        {
+            std::cout << "object exists so locked\n";
+        }
+
+        if (Obj.expired())
+        {
+            std::cout << "object is already expired\n";
+        }
+        std::cout << Obj.use_count() << std::endl;
+    }
+};
+
+Manager manager;
+
+int main()
+{
+    {
+    std::shared_ptr<Object> obj = std::make_shared<Object>();
+    manager.Obj = obj;
+    manager.Func();
+    }
+    manager.Func();
+}      
 ```
 ## Smart Pointers Example
 ```cpp
