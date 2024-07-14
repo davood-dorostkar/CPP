@@ -28,6 +28,8 @@
 ## Modern C++
 
 1. [Smart Pointers](/Tutorial/Modern/smart-pointers.md)
+2. [Parameter Pack](/Tutorial/Modern/parameter-pack.md)
+3. [Forwarding References](/Tutorial/Modern/forwarding-reference.md)
 
 ## Object Oriented Programming
 
