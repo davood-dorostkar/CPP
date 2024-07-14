@@ -24,12 +24,14 @@
 7. [Memory Management](/Tutorial/Language-Advanced/Memory.md)
 8. [Forward Declaration](/Tutorial/Language-Advanced/Forward-declaration.md)
 9. [Constructors](/Tutorial/Language-Advanced/Constructors.md)
+10. [lvalues and rvalues](/Tutorial/Language-Advanced/lvalue-rvalue.md)
 
 ## Modern C++
 
 1. [Smart Pointers](/Tutorial/Modern/smart-pointers.md)
-2. [Parameter Pack](/Tutorial/Modern/parameter-pack.md)
+2. [Variadic Templates & Parameter Pack](/Tutorial/Modern/parameter-pack.md)
 3. [Forwarding References](/Tutorial/Modern/forwarding-reference.md)
+4. [Move Semantics](/Tutorial/Modern/move.md)
 
 ## Object Oriented Programming
 

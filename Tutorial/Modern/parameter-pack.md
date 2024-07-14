@@ -8,7 +8,7 @@ A parameter pack is a template parameter that can accept zero or more template a
 
 Parameter packs can be used in both template parameter lists and function parameter lists. They are indicated by an ellipsis (`...`) following the parameter name.
 
-## Template Parameter Packs
+## Template Parameter Packs (or Variadic templates)
 
 ```cpp
 template<typename... Ts>
