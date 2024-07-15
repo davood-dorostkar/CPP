@@ -116,7 +116,7 @@ int main()
 Definition:
 
 ```cpp
-Cube & Cube::operator=(const Cube & c)
+Cube& Cube::operator=(const Cube& c)
 {
     name = c.name;
     return *this;
