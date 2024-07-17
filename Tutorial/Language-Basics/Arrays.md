@@ -33,7 +33,7 @@ void reverseArray(int arr[], int N){
 int multiArray[row][col]
 ```
 
-![](https://github.com/davood-dorostkar/CPP/blob/main/images/m-dim-array.jpeg)
+![](/images/m-dim-array.jpeg)
 
 ## Dot product
 

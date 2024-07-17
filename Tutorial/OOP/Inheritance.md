@@ -25,7 +25,7 @@ void ChildClass::foo(int in)
 ### Single inheritance
 inheritance of one class to another class (also known as simple, basic inheritance)
 
-![](https://github.com/davood-dorostkar/CPP/blob/main/images/single-inheritance.jpg)
+![](/images/single-inheritance.jpg)
 ```cpp
 class Animal {
   public:
@@ -53,7 +53,7 @@ when there is more than one base class
 
 the child has access to all its parents' members
 
-![](https://github.com/davood-dorostkar/CPP/blob/main/images/multiple-inheritance.jpg)
+![](/images/multiple-inheritance.jpg)
 ```cpp
 class Mammal {
   public:
@@ -87,7 +87,7 @@ int main() {
 ### Multilevel inheritance
 one class is derivied from a class that is also a derived class
 
-![](https://github.com/davood-dorostkar/CPP/blob/main/images/multilevel-inheritance.jpg)
+![](/images/multilevel-inheritance.jpg)
 ```cpp
 class Animal {
   public:
@@ -121,7 +121,7 @@ int main() {
 ### Hierarchical inheritance
 there is more than one derivied class from a base class
 
-![](https://github.com/davood-dorostkar/CPP/blob/main/images/hierarchical-inheritance.jpg)
+![](/images/hierarchical-inheritance.jpg)
 ```cpp
 class Animal {
   public:
@@ -157,7 +157,7 @@ int main() {
 ### Hybrid inheritance
 mixing more than one type of inheritance
 
-![](https://github.com/davood-dorostkar/CPP/blob/main/images/hybrid-inheritance.jpg)
+![](/images/hybrid-inheritance.jpg)
 ```cpp
 class Shape {
   public:

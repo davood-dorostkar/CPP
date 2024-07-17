@@ -13,7 +13,7 @@ A pointer is an address that points to the allocated location in the memory. the
 - When you change a reference's value you are changing the original value.
 - Sometimes refs and ptrs might seem the same; keep in mind that using a ptr, you will have two variables: the original var, and var that stores the address; but with refs, there is only the original var.
 
-![](https://github.com/davood-dorostkar/CPP/blob/main/images/ptr-ref.PNG)
+![](/images/ptr-ref.PNG)
 
 ## Use Cases
 
@@ -46,7 +46,7 @@ ref = 5; // same result
 
 ## Pointer & pointer-to-pointer
 
-![](https://github.com/davood-dorostkar/CPP/blob/main/images/ptr-to-ptr.jpeg)
+![](/images/ptr-to-ptr.jpeg)
 
 ## Pass by reference
 
@@ -86,15 +86,15 @@ arrayAsPointer(array, size);
 
 When you pass an argument by reference, it does not copy the whole data and it only passes the reference to that memory. However it is important to know that it still makes a copy of that pointer for the lifetime of that function call. consider we have a pointer pointing to an integer:
 
-![](https://github.com/davood-dorostkar/CPP/blob/main/images/pass-by-pointer1.png)
+![](/images/pass-by-pointer1.png)
 
 when we pass it to a function, it makes its own copy which is also pointing to the same location in memory. so here if we dereference the pointer and change its value, the original value will be changed:
 
-![](https://github.com/davood-dorostkar/CPP/blob/main/images/pass-by-pointer2.png)
+![](/images/pass-by-pointer2.png)
 
 but we can still change the pointer itself without concerning about changing the original variable. in this case, we are changing the pointer itself so it means that the copy pointer will point to another location:
 
-![](https://github.com/davood-dorostkar/CPP/blob/main/images/pass-by-pointer3.png)
+![](/images/pass-by-pointer3.png)
 
 ```cpp
 int passByPointer(int* ptr)
