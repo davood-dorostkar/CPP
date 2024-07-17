@@ -1,26 +1,68 @@
-## Stack
+## Scopes
+we have four different types of scopes:
+- class scope
+  ```cpp
+  class Entity
+  {
 
-when you define a variable it is in stack memory. the stack memory is filled from up to down (from large addresses to lower addresses)
+  }
+  ```
+- function scope
+  ```cpp
+  int main()
+  {
 
-after function ends, its stack memory is erased and inaccessible. so do not return local addresses inside a function. this leads to an error:
+  }
+  ```
+- if statements/loops scopes
+  ```cpp
+  if(true)
+  {
 
-```cpp
-class Cube
-{
-    int _side;
-public:
-    Cube(int side)
-    {
-        _side = side;
-    }
-};
-```
+  }
+  ```
+- empty scopes
+  ```cpp
+  {
+
+  }
+  ```
+
+## Stack (Scoped Variables)
+
+- variables declared within a scope on the stack are automatically destroyed when the scope ends, unlike heap-allocated variables which persist until explicitly deleted
+
+- the stack memory is filled from up to down (from large addresses to lower addresses)
+
+- after function ends, its stack memory is erased and inaccessible. so do not return local addresses inside a function. this leads to an error:
 
 ```cpp
 Cube* makeCube(int side)
 {
     Cube cube(side);
     return &cube; // bad practice. this memory address will be destroyed upon function finish
+}
+```
+to deal with this issue we can do two things:
+1. create it in the heap
+```cpp
+Cube* CreateCube()
+{
+    Cube* cube = new Cube();
+    return cube;
+}
+```
+2. preallocate memory
+```cpp
+void CreateCube(Cube* cube)
+{
+    // fill the input cube
+}
+
+int main()
+{
+    Cube c;
+    CreateCube(c);
 }
 ```
 
@@ -31,6 +73,51 @@ Cube* makeCube(int side)
 - the heap memory is filled from down to up(from lower addresses to larger addresses- in contrast to stack)
 
 - the only way to free that memory in heap is by keyword `delete`
+
+### Making Scoped Heap Variables
+It is possible to restrict the lifetime of a heap allocatd variable to scopes like stack variables. it is somehow similar to `unique_ptr` as it is also scoped.
+```cpp
+class Entity
+{
+public:
+    Entity()
+    {
+        std::cout << "Created!\n";
+    }
+
+    ~Entity()
+    {
+        std::cout << "Destroyed!\n";
+    }
+
+};
+
+class ScopedPtr
+{
+private:
+    Entity* m_Ptr;
+public:
+    ScopedPtr(Entity* ptr)
+        : m_Ptr(ptr)
+    {
+    }
+
+    ~ScopedPtr()
+    {
+        delete m_Ptr;
+    }
+};
+
+int main()
+{
+    { // scoped heap allocated variable
+        ScopedPtr e = new Entity(); // implicit conversion
+    }
+    std::cin.get();
+    return 0;
+}
+
+```
 
 ## new
 
