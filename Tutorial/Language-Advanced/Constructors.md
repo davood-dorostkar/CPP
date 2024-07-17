@@ -7,6 +7,26 @@
 
 ## Initializer List
 In C++, when you create an object, you can pass arguments to its constructor using an initializer list. 
+
+> It is important that you initialize the members in the same order that they are defined in the class, otherwise you may get dependency errors. this is different in different compilers, but avoid the risk.
+
+- **Performance Improvement**:
+  - Avoids double initialization: Reduces the overhead of constructing and then re-assigning member variables.
+
+- **Code Clarity**:
+  - Cleaner constructors: Keeps the constructor body free from clutter, making it easier to understand the main logic of the constructor.
+
+- **Mandatory Initialization**:
+  - Required for certain types: Some types (like references and const members) must be initialized using initializer lists because they cannot be assigned values later.
+
+- **Consistent Initialization**:
+  - Ensures correct order: Members are always initialized in the order they are declared in the class, which can prevent subtle bugs related to initialization order.
+
+- **Code Style and Readability**:
+  - Improved readability: Keeps initialization separate from other constructor logic, making the code more readable and maintainable.
+  - Preferred by convention: Adhering to common C++ coding conventions and best practices.
+
+### Example
 ```cpp
 #include <iostream>
 #include <string>
@@ -28,7 +48,6 @@ public:
 
 MyClassWithMember obj1(42, 3); // Instantiation
 ```
-
 ## Initilizer List with Parent Class
 In C++, when you have a class that inherits from another class, you can use the constructor initializer list to specify how the base class constructor should be called. This allows you to provide any necessary arguments to the base class constructor.
 ```cpp
