@@ -32,6 +32,7 @@
 2. [Variadic Templates & Parameter Pack](/Tutorial/Modern/parameter-pack.md)
 3. [Forwarding References](/Tutorial/Modern/forwarding-reference.md)
 4. [Move Semantics](/Tutorial/Modern/move.md)
+5. [Structured Binding](/Tutorial/Modern/binding.md)
 
 ## Object Oriented Programming
 
