@@ -100,6 +100,16 @@ int main() {
     sptr.reset();  // Releases the current object if this was the last reference.
     sptr.reset(new int(20));  // Now sptr manages a new integer with value 20.
     ```
+- **Dealing with Deferred Rendering**:
+   - game engines use deferred rendering, meaning rendering commands are collected and executed later. This requires assets to remain in memory until rendering is complete. Shared pointers ensure these assets are not deleted prematurely, which would lead to crashes or rendering errors. Shared pointers ensure that all objects required by these commands are kept alive until the commands are executed.
+
+- **Multi-Threading**:
+   - Shared pointers are thread-safe, allowing multiple threads to share ownership of an object without race conditions. This is crucial for ensuring consistency and correctness in a multi-threaded environment. (the ref increment/decrement is done atomically)
+
+- **Performance Considerations**
+  - shared pointers come with some overhead due to atomic operations for thread safety. However, they argue that this overhead is negligible compared to the benefits of simplified and safer memory management.
+  - In performance-critical sections, raw pointers or unique pointers might be used, but for general asset management, shared pointers provide a good balance of safety and convenience.
+
 ### Example
 ```cpp
 #include <memory>
