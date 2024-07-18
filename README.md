@@ -21,10 +21,11 @@
 4. [Inline Function](/Tutorial/Language-Advanced/Inline-function.md)
 5. [Pointer & Reference](/Tutorial/Language-Advanced/Pointer-&-Reference.md)
 6. [Templates](/Tutorial/Language-Advanced/Templates.md)
-7. [Memory Management](/Tutorial/Language-Advanced/Memory.md)
+7. [Memory Management (Heap & Stack)](/Tutorial/Language-Advanced/Memory.md)
 8. [Forward Declaration](/Tutorial/Language-Advanced/Forward-declaration.md)
 9. [Constructors](/Tutorial/Language-Advanced/Constructors.md)
 10. [lvalues and rvalues](/Tutorial/Language-Advanced/lvalue-rvalue.md)
+11. [Function Pointers](/Tutorial/Language-Advanced/func-pointer.md)
 
 ## Modern C++
 
@@ -33,6 +34,7 @@
 3. [Forwarding References](/Tutorial/Modern/forwarding-reference.md)
 4. [Move Semantics](/Tutorial/Modern/move.md)
 5. [Structured Binding](/Tutorial/Modern/binding.md)
+6. [Lambda](/Tutorial/Language-Advanced/lambda.md)
 
 ## Object Oriented Programming
 
