@@ -35,6 +35,7 @@
 4. [Move Semantics](/Tutorial/Modern/move.md)
 5. [Structured Binding](/Tutorial/Modern/binding.md)
 6. [Lambda](/Tutorial/Language-Advanced/lambda.md)
+7. [auto](/Tutorial/Modern/auto.md)
 
 ## Object Oriented Programming
 
