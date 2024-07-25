@@ -1,7 +1,7 @@
 # lvalues and rvalues
 
 ## L-values and R-values:
-- **L-values** (locator values) have a specific memory location and can (typically) appear on the left side of an assignment. For example, in `int i = 10;`, `i` is an l-value.
+- **L-values** (located values) have a specific memory location and can (typically) appear on the left side of an assignment. For example, in `int i = 10;`, `i` is an l-value.
 - **R-values** are temporary values that do not have a specific memory location until they are assigned to an l-value. For example, `10` in the same expression is an r-value.
 
 ## L-value References and R-value References:
