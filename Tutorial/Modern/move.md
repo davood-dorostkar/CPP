@@ -4,25 +4,30 @@ move semantics were introduced in C++11 and rely on [rvalue references](/Tutoria
 
 Move semantics become crucial when dealing with objects that require significant resources, such as those involving heap allocations. Traditionally, copying such objects would be resource-intensive, especially in scenarios like passing objects to functions or returning them from functions. With move semantics, instead of copying an object, we move it, thus transferring ownership and avoiding the overhead of copying.
 
+## Elements of Move Semantics
 
+1. **Move Constructor**
+   ```cpp
+   ClassName(ClassName&& other);
+   ```
+
+2. **Move Assignment Operator**
+   ```cpp
+   ClassName& operator=(ClassName&& other);
+   ```
+
+3. **std::move**
+   ```cpp
+   ClassName obj1;
+   ClassName obj2 = std::move(obj1); // invokes move constructor or move assignment operator
+   ```
+
+4. **Rvalue References**
+   ```cpp
+   void func(ClassName&& obj);
+   ```
 
 ## Example
-- In this example there is a basic string class and an entity class that consumes this string. the string class involves copying data, which includes heap allocations, leading to inefficiency. 
-
-- By implementing a `move constructor`, the process is optimized. The move constructor takes an `rvalue reference`, assigns the existing data pointer to the new object.
-
-- here the `m_Name((String&&)name)` part is very important. without casting to an rvalue, the object will still be copied, not moved. you need to explicitly specify it as an rvalue. this is also equivalent to `m_Name(std::move(name))`. however `std::move` is preferred and more flexible.
-
-- the output of this code is: 
-    ```
-    Created!
-    Moved!
-    Destroyed!
-    Davood
-    Destroyed!
-    ```
-    this means that an rvalue String is created, then it moved to an Entity; then the rvalue **temporary** object is deleted. then at the end of the program, the Entity is deleted.
-
 ```cpp
 #include <iostream>
 #include <string.h>
@@ -75,7 +80,8 @@ private:
     uint32_t m_Size;
     char* m_Data;
 };
-
+```
+```cpp
 class Entity
 {
 public:
@@ -97,7 +103,8 @@ public:
 private:
     String m_Name;
 };
-
+```
+```cpp
 int main() {
     Entity entity("Davood");
     entity.PrintName();
@@ -105,9 +112,25 @@ int main() {
 }
 
 ```
+- In this example there is a basic string class and an entity class that consumes this string. the string class involves copying data, which includes heap allocations, leading to inefficiency. 
+
+- By implementing a `move constructor`, the process is optimized. The move constructor takes an `rvalue reference`, assigns the existing data pointer to the new object.
+
+- here the `m_Name((String&&)name)` part is very important. without casting to an rvalue, the object will still be copied, not moved. you need to explicitly specify it as an rvalue. this is also equivalent to `m_Name(std::move(name))`. however `std::move` is preferred and more flexible.
+
+- the output of this code is: 
+    ```
+    Created!
+    Moved!
+    Destroyed!
+    Davood
+    Destroyed!
+    ```
+    this means that an rvalue String is created, then it moved to an Entity; then the rvalue **temporary** object is deleted. then at the end of the program, the Entity is deleted.
+
 ## std::move
 - `std::move` is a function provided by the C++ standard library to indicate that an object can be moved.
-- It essentially casts an object to an `R-value reference`, allowing the `move constructor` or `move assignment operator` to be called.
+- It essentially casts an object to an `R-value reference`, allowing the `move constructor` or `move assignment operator` to be called. it does not actually move anything, but rather indicates that a move is allowed.
 
 ### Example
 take the above example, with this:
