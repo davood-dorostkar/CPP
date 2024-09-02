@@ -47,7 +47,7 @@
 
 ## Data Structures & STL
 
-1. [Vector](/Tutorial/DS-STL/Vector.md)
+1. [Vector](/Tutorial/DS-STL/vector.md)
 2. [Linked List](/Tutorial/DS-STL/linkedList.md)
 3. [Queue](/Tutorial/DS-STL/queue.md)
 4. [Stack](/Tutorial/DS-STL/stack.md)

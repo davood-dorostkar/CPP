@@ -82,7 +82,7 @@ int main()
 
 - `std::find_if` takes a range and a predicate (the lambda function).
 - It iterates over the elements in the range and applies the predicate to each element.
-- The iteration stops when the predicate returns `true`, and `std::find_if` returns an iterator to that element. If no such element is found, it returns `vector.end()` iterator (this iterator is one place ahead of the last item in the memory which is an undefined value): more info in [vector](/Tutorial/DS-STL/Vector.md#understanding-stdvectorend)
+- The iteration stops when the predicate returns `true`, and `std::find_if` returns an iterator to that element. If no such element is found, it returns `vector.end()` iterator (this iterator is one place ahead of the last item in the memory which is an undefined value): more info in [vector](/Tutorial/DS-STL/vector.md#understanding-stdvectorend)
 
 ```cpp
 #include <iostream>

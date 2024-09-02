@@ -4,7 +4,7 @@ move semantics were introduced in C++11 and rely on [rvalue references](/Tutoria
 
 Move semantics become crucial when dealing with objects that require significant resources, such as those involving heap allocations. Traditionally, copying such objects would be resource-intensive, especially in scenarios like passing objects to functions or returning them from functions. With move semantics, instead of copying an object, we move it, thus transferring ownership and avoiding the overhead of copying.
 
-## Elements of Move Semantics
+## Categories of Move Semantics
 
 1. **Move Constructor**
    ```cpp
@@ -219,4 +219,302 @@ the [Copy Assignment Operator](/Tutorial/Language-Advanced/Constructors.md#copy-
 ```cpp
 String& operator=(const String& other) // copy assignment operator
 String& operator=(String&& other) //move assignment operator
+```
+## Direct Move & Move with Initialization
+Assume:
+```cpp
+std::unique_ptr<float> data1 = std::make_unique<float>(2.3f);
+std::unique_ptr<float> data2 = std::make_unique<float>(55.5f);
+```
+now consider these two codes <br/>
+- Case 1:
+```cpp
+data2 = std::make_unique<float>(*std::move(data1));
+std::cout << *data1.get() << std::endl;
+std::cout << *data2.get() << std::endl;
+```
+- Case 2:
+```cpp
+data2 = std::move(data1);
+std::cout << *data1.get() << std::endl;
+std::cout << *data2.get() << std::endl;
+```
+- In the first code, you are moving the value pointed to by `data1`, not the ownership of the pointer itself. Therefore, `data1` remains valid, but the value it points to becomes `undefined` or garbage.
+  
+  >Even though this works in this specific case (because float is a simple type), relying on the value after a move is generally dangerous and considered undefined behavior. The move indicates that the value should not be used afterward, as it might be in an invalid state.
+
+- In the second code, you are moving the ownership of the pointer itself from `data1` to `data2`. After this move, `data1` is `null`, and dereferencing it (`*data1.get()`) results in `segfault`, causing an error.
+
+## Example: Moving with Heap Allocation
+here the `MyType` data inside `Entity` is heap allocated. So it needs pointer checks. 
+```cpp
+#include <iostream>
+#include <memory>
+#include <vector>
+
+class MyType
+{
+public:
+    int a;
+    float b;
+
+    MyType() : a(0), b(0)
+    {
+        std::cout << "default constructor!\n";
+    };
+
+    MyType(int in_a, float in_b) : a(in_a), b(in_b)
+    {
+        std::cout << "base constructor!\n";
+    };
+
+    MyType(const MyType& other) : a(other.a), b(other.b)
+    {
+        std::cout << "copy constructor!\n";
+    };
+
+    MyType(MyType&& other) noexcept : a(other.a), b(other.b)
+    {
+        std::cout << "move constructor!\n";
+    };
+
+    MyType& operator=(const MyType& other)
+    {
+        if (this != &other)
+        {
+            a = other.a;
+            b = other.b;
+            std::cout << "copy assignment!\n";
+        }
+        return *this;
+    }
+
+    MyType& operator=(MyType&& other) noexcept
+    {
+        if (this != &other)
+        {
+            a = other.a;
+            b = other.b;
+            std::cout << "move assignment!\n";
+        }
+        return *this;
+    }
+
+    void PrintData() const
+    {
+        std::cout << "signal: " << a << ", " << b << std::endl;
+    }
+};
+
+template <typename T>
+class Entity
+{
+private:
+    std::unique_ptr<T> _data = nullptr;
+
+public:
+    void GetData(std::unique_ptr<T> &data)
+    {
+        if (_data)
+        {
+            data = std::make_unique<T>(std::move(*_data));
+        }
+    }
+
+    void SetData(T& data)
+    {
+        _data = std::make_unique<T>(std::move(data));
+    }
+
+    void PrintData() const
+    {
+        if (_data)
+        {
+            std::cout << "_data: " << _data->a << ", " << _data->b << std::endl;
+        }
+        else
+        {
+            std::cout << "_data is null\n";
+        }
+    }
+};
+
+void testIntegrity(MyType signal, std::unique_ptr<MyType>& endpointSignal, Entity<MyType>& entity)
+{
+    entity.PrintData();
+    signal.PrintData();
+
+    std::cout << "\nSet Data:\n";
+    entity.SetData(signal);
+    entity.PrintData();
+    signal.PrintData();
+    endpointSignal->PrintData();
+
+    signal = {7,8};
+    std::cout << "\nGet Data:\n";
+    entity.GetData(endpointSignal);
+    entity.PrintData();
+    signal.PrintData();
+    endpointSignal->PrintData();
+
+    std::cout << "\nGet Data:\n";
+    entity.GetData(endpointSignal);
+    entity.PrintData();
+    signal.PrintData();
+    endpointSignal->PrintData();
+
+    std::cout << "\nSet Data:\n";
+    entity.SetData(signal);
+    entity.PrintData();
+    signal.PrintData();
+    endpointSignal->PrintData();
+
+    std::cout << "\nGet Data:\n";
+    entity.GetData(endpointSignal);
+    entity.PrintData();
+    signal.PrintData();
+    endpointSignal->PrintData();
+}
+
+int main()
+{
+    std::unique_ptr<MyType> endpointSignal = std::make_unique<MyType>();
+    Entity<MyType> entity;
+    MyType signal(2, 3);
+    std::cout << "initialized!\n\n";
+
+    testIntegrity(signal, endpointSignal, entity);
+
+    return 0;
+}
+
+```
+## Example: Moving with Stack Allocation
+here the `MyType` data inside `Entity` is stack allocated. So it doesnt  need pointer checks.
+```cpp
+#include <iostream>
+#include <memory>
+#include <vector>
+
+class MyType
+{
+public:
+    int a;
+    float b;
+
+    MyType() : a(0), b(0)
+    {
+        std::cout << "default constructor!\n";
+    };
+
+    MyType(int in_a, float in_b) : a(in_a), b(in_b)
+    {
+        std::cout << "base constructor!\n";
+    };
+
+    MyType(const MyType& other) : a(other.a), b(other.b)
+    {
+        std::cout << "copy constructor!\n";
+    };
+
+    MyType(MyType&& other) : a(other.a), b(other.b)
+    {
+        std::cout << "move constructor!\n";
+    };
+
+    MyType& operator=(const MyType& other)
+    {
+        a=other.a;
+        b=other.b;
+        std::cout << "copy assignment!\n";
+        return *this;
+    }
+
+    MyType& operator=(MyType&& other)
+    {
+        a=other.a;
+        b=other.b;
+        std::cout << "move assignment!\n";
+        return *this;
+    }
+
+    void PrintData()
+    {
+        std::cout << "signal: " << this->a << ", " << this->b << std::endl;
+    }
+};
+
+template <typename T>
+class Entity
+{
+private:
+    MyType _data;
+
+public:
+    void GetData(std::unique_ptr<T> &data)
+    {
+        data = std::make_unique<T>(std::move(_data));
+    }
+
+    void SetData(MyType& data)
+    {
+        _data = std::move(data);
+    }
+
+    void PrintData()
+    {
+        std::cout << "_data: " << _data.a << ", " << _data.b << std::endl;
+    }
+
+};
+
+void testIntegrity(MyType signal, std::unique_ptr<MyType>& endpointSignal, Entity<MyType> entity)
+{
+    entity.PrintData();
+    signal.PrintData();
+
+    std::cout << "\nSet Data:\n";
+    entity.SetData(signal);
+    entity.PrintData();
+    signal.PrintData();
+    endpointSignal->PrintData();
+
+    signal = {7,8};
+    std::cout << "\nGet Data:\n";
+    entity.GetData(endpointSignal);
+    entity.PrintData();
+    signal.PrintData();
+    endpointSignal->PrintData();
+
+    std::cout << "\nGet Data:\n";
+    entity.GetData(endpointSignal);
+    entity.PrintData();
+    signal.PrintData();
+    endpointSignal->PrintData();
+
+    std::cout << "\nSet Data:\n";
+    entity.SetData(signal);
+    entity.PrintData();
+    signal.PrintData();
+    endpointSignal->PrintData();
+
+    std::cout << "\nGet Data:\n";
+    entity.GetData(endpointSignal);
+    entity.PrintData();
+    signal.PrintData();
+    endpointSignal->PrintData();
+}
+
+int main()
+{
+    std::unique_ptr<MyType> endpointSignal = std::make_unique<MyType>();
+    Entity<MyType> entity;
+    MyType signal(2, 3);
+    std::cout << "initialized!\n\n";
+
+    testIntegrity(signal, endpointSignal, entity);
+
+    return 0;
+}
+
 ```

@@ -49,6 +49,27 @@ std::unique_ptr<int> ptr = make_unique<int>();
     uptr.reset();  // Releases and deletes the currently managed object.
     uptr.reset(new int(20));  // Now uptr manages a new integer with value 20.
    ```
+### make unique ptr from shared ptr
+you cannot make a unique ptr directly from a shared pointer. you will get compiler error. however, you can make from it, but they will be disconnected:
+```cpp
+std::shared_ptr<int> sptr = std::make_shared<int>(10);
+std::unique_ptr<int> uptr = nullptr;
+
+uptr = std::make_unique<int>(*std::move(sptr));
+std::cout << "Moved shared ptr to unique ptr!"<< std::endl;
+std::cout << "shared ptr: " << *sptr << std::endl;
+std::cout << "unique ptr: " << *uptr << std::endl;
+
+*sptr = 20;
+std::cout << "\nUpdated shared ptr!"<< std::endl;
+std::cout << "shared ptr: " << *sptr << std::endl;
+std::cout << "unique ptr: " << *uptr << std::endl;
+
+*uptr = 30;
+std::cout << "\nUpdated unique ptr!"<< std::endl;
+std::cout << "shared ptr: " << *sptr << std::endl;
+std::cout << "unique ptr: " << *uptr << std::endl;
+```
 ### Example
 ```cpp
 #include <iostream>
@@ -132,7 +153,6 @@ int main() {
     return 0;
 }
 ```
-
 ## std::weak_ptr
 - just like the shared pointer, but it is not included in the reference count. so the last shared pointer will free the memory even if there is still a weak pointer left.
 - you can define it with assigning to a shared pointer.

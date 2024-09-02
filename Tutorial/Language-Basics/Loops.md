@@ -53,3 +53,4 @@ for(const int &i : list) // here i is the original value and not changeable
     i=100;
 }
 ```
+>for loops over containers like `vectors` are empty safe: [vectors](/Tutorial/DS-STL/vector.md#loop-over-vector)

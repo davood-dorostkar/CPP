@@ -24,13 +24,12 @@ vec.size() // size is 3
 vec.capacity() // capacity is 6
 ```
 
-### make an iterator
+### Append data
 
-it should be of the same type
+adding data to the end of vector
 
 ```cpp
-std::vector<int> vectorInts;
-std::vector<int>::iterator it;
+vectorInts.push_back(4);
 ```
 
 ### Assign
@@ -39,34 +38,6 @@ it puts data in the vector, and replaces old data.
 
 ```cpp
 vectorInts.assign(how many times, value);
-```
-
-### iterating over vector
-
-```cpp
-for (it = vectorInts.begin(); it != vectorInts.end(); ++it)
-    std::cout<<*it<<" ";
-```
-
-### Understanding std::vector::end()
-
-`numbers.end()` returns an iterator pointing to one past the last element of the vector. This is often referred to as the `past-the-end` iterator.
-
-It is important to note that the "past-the-end" iterator does not point to a valid element; dereferencing it is `undefined behavior`.
-
-print the last element of the vector:
-```cpp
-std::vector<int> numbers = {1, 3, 5, 7, 9, 8};  
-std::cout << *(numbers.end() - 1)  << std::endl;  
-// console: 8
-```
-
-### Append data
-
-adding data to the end of vector
-
-```cpp
-vectorInts.push_back(4);
 ```
 
 ### Insert data to specific location
@@ -110,4 +81,45 @@ vectorInts.erase(start, end);
 
 ```cpp
 vectorInts.pop_back();
+```
+
+
+### Understanding std::vector::end()
+
+`numbers.end()` returns an iterator pointing to one past the last element of the vector. This is often referred to as the `past-the-end` iterator.
+
+It is important to note that the "past-the-end" iterator does not point to a valid element; dereferencing it is `undefined behavior`.
+
+print the last element of the vector:
+```cpp
+std::vector<int> numbers = {1, 3, 5, 7, 9, 8};  
+std::cout << *(numbers.end() - 1)  << std::endl;  
+// console: 8
+```
+
+## Iterators
+### make an iterator
+
+it should be of the same type
+
+```cpp
+std::vector<int> vectorInts;
+std::vector<int>::iterator it;
+```
+
+### iterating over vector
+
+```cpp
+for (it = vectorInts.begin(); it != vectorInts.end(); ++it)
+    std::cout<<*it<<" ";
+```
+## Loop over vector
+you can use several methods to loop over a vector. good news is that vector is empty-safe; means that if it is empty, it will work as expected and you dont need to check it:
+```cpp
+std::vector<int> vec;
+for (const auto &item : vec)
+{
+    std::cout << item;
+}
+std::cout << "end" << std::endl;
 ```
