@@ -34,5 +34,7 @@ public:
 };
 
 /*
-help: it is somehow tricky. important note is that if the cumulative sum reaches a point that it has been previously, the part between is a balanced subarray.
+help: it is somehow tricky. 
+important note is that if the cumulative sum reaches a point that it has been previously, 
+the part between is a balanced subarray.
 */
