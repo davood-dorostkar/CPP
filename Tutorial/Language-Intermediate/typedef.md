@@ -138,6 +138,16 @@ int main() {
     return 0;
 }
 ```
+This is effectively the same as:
+```c
+struct Levels 
+{
+    ///
+}
+
+typedef struct Levels levels_t;
+levels_t myLevels;
+```
 
 ### Key Differences
 | Aspect                   | `struct`                                    | `typedef struct`                          |
