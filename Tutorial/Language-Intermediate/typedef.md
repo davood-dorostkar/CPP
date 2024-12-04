@@ -129,10 +129,10 @@ typedef struct {
     unsigned int l1 : 1;
     unsigned int l2 : 1;
     unsigned int l3 : 1;
-} Levels;
+} levels_t;
 
 int main() {
-    Levels level; // No need for 'struct' keyword
+    levels_t levels; // No need for 'struct' keyword
     level.l1 = 1;
     level.l2 = 0;
     return 0;
@@ -146,7 +146,7 @@ struct Levels
 }
 
 typedef struct Levels levels_t;
-levels_t myLevels;
+levels_t levels;
 ```
 
 ### Key Differences
