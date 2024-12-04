@@ -74,9 +74,9 @@ int main() {
 ```c
 struct 
 {
-    unsigned char l1:1;
-    unsigned char l2:1;
-    unsigned char l3:1;
+    unsigned char l1;
+    unsigned char l2;
+    unsigned char l3;
 } levels;
 ```
 
@@ -89,9 +89,9 @@ struct
 ```c
 struct levels
 {
-    unsigned char l1:1;
-    unsigned char l2:1;
-    unsigned char l3:1;
+    unsigned char l1;
+    unsigned char l2;
+    unsigned char l3;
 };
 ```
 
