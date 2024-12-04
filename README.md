@@ -10,9 +10,13 @@
 4. [Loops](/Tutorial/Language-Basics/Loops.md)
 5. [Arithmetic Operations](/Tutorial/Language-Basics/Arithmetic-operations)
 6. [Conditionals](/Tutorial/Language-Basics/Conditionals.md)
-7. [I/O](/Tutorial/Language-Basics/IO.md)
-8. [File Management](/Tutorial/Language-Basics/File-management.md)
-9. [Bitwise Operations](/Tutorial/Language-Basics/bitwise.md)
+
+## Language Intermediate
+1. [I/O](/Tutorial/Language-Intermediate/IO.md)
+2. [File Management](/Tutorial/Language-Intermediate/File-management.md)
+3. [Bitwise Operations](/Tutorial/Language-Intermediate/bitwise.md)
+4. [struct](/Tutorial/Language-Intermediate/struct.md)
+5. [typedef](/Tutorial/Language-Intermediate/typedef.md)
 
 ## Language Advanced
 
