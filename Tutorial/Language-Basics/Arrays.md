@@ -14,6 +14,77 @@ find the distance between two items (in general for each data in memory):
 std::cout << (long)&var[2] - (long)&var[0] << std::endl;
 ```
 
+## Multidimentional array
+```cpp
+int multiArray[row][col]
+```
+
+![](/images/m-dim-array.jpeg)
+
+## Pass arrays to functions
+there are 3 ways:
+```cpp
+void arrayAsPointer(int *array, int size)
+{
+    for(int i=0; i<size; i++)
+        std::cout<<array[i]<<" ";
+}
+```
+```cpp
+void arraySized(int array[3], int size)
+{
+    for(int i=0; i<size; i++)
+        std::cout<<array[i]<<" ";
+}
+```
+```cpp
+void arrayUnSized(int array[], int size)
+{
+    for(int i=0; i<size; i++)
+        std::cout<<array[i]<<" ";
+}
+```
+## Iterators for raw arrays
+```cpp
+#include <iterator>
+
+int arr[10];
+
+int* start = std:begin(arr);
+int* end = std::end(arr);
+```
+## Fill an array with sequential values
+```cpp
+#include <numeric>
+
+std::iota(startPtr, endPtr, startingValue);
+```
+using together with iterators:
+```cpp
+std::iota(std:begin(arr), std::end(arr), 5);
+```
+## std::array
+STL array is more flexible and safer. for example `.at` checks availability before access to index:
+```cpp
+#include <array>
+
+int arr[10];
+arr[1000] = 8; // core dump
+
+std::array<int, 10> stdarr;
+stdarr.at(1000) = 8; // gives verbose error
+```
+## Dot product
+```cpp
+for(int i=0; i<row; i++)
+{
+    result[i]=0;
+    for(int j=0; j<col; j++)
+    {
+      result[i]+=(matrix[i][j] * vector[j]);
+    }
+}
+```
 ## Reverse an array
 
 ```cpp
@@ -26,28 +97,6 @@ void reverseArray(int arr[], int N){
     }
 }
 ```
-
-## Multidimentional array
-
-```cpp
-int multiArray[row][col]
-```
-
-![](/images/m-dim-array.jpeg)
-
-## Dot product
-
-```cpp
-for(int i=0; i<row; i++)
-{
-    result[i]=0;
-    for(int j=0; j<col; j++)
-    {
-      result[i]+=(matrix[i][j] * vector[j]);
-    }
-}
-```
-
 ## Sort an array
 
 ```cpp
@@ -63,33 +112,5 @@ for(int i=0; i<size; i++)
         }
         else break;
     }
-}
-```
-
-## Pass arrays to functions
-
-there are 3 ways:
-
-```cpp
-void arrayAsPointer(int *array, int size)
-{
-    for(int i=0; i<size; i++)
-        std::cout<<array[i]<<" ";
-}
-```
-
-```cpp
-void arraySized(int array[3], int size)
-{
-    for(int i=0; i<size; i++)
-        std::cout<<array[i]<<" ";
-}
-```
-
-```cpp
-void arrayUnSized(int array[], int size)
-{
-    for(int i=0; i<size; i++)
-        std::cout<<array[i]<<" ";
 }
 ```
