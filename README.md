@@ -12,6 +12,7 @@
 6. [Conditionals](/Tutorial/Language-Basics/Conditionals.md)
 7. [I/O](/Tutorial/Language-Basics/IO.md)
 8. [File Management](/Tutorial/Language-Basics/File-management.md)
+9. [Bitwise Operations](/Tutorial/Language-Basics/bitwise.md)
 
 ## Language Advanced
 
