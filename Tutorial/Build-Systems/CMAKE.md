@@ -38,3 +38,12 @@ add_executable(bin_packing_mip  main.cpp)
 ```cmake
 target_link_libraries(bin_packing_mip Qt5::Core libortools.so)
 ```
+### Select Compiler
+to force Cmake to use a specific compiler toolchain when more than one is installed (e.g. in windows we have both mingw and msvc):
+```sh
+cmake -G "MinGW Makefiles" ..
+```
+or force more explicitly:
+```sh
+cmake -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ ..
+```
