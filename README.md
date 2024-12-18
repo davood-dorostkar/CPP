@@ -80,7 +80,7 @@
 2. [Compilers](/Tutorial/Build-Systems/Compilers.md)
 
 ## Testing
-1. [GTest](/Unit_Testing/GTest_minimum/)
+1. [GTest](/Unit_Testing/gtest.md)
 
 ## Qt
 
