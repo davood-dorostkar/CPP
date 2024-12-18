@@ -45,3 +45,5 @@ target_link_libraries(your_project PRIVATE gtest gtest_main)
 ```sh
 g++ your_test_file.cpp -o test_executable -I/path/to/googletest/include -L/path/to/googletest/build/lib -lgtest -lgtest_main -pthread
 ```
+## Example
+a very minimum usage of gtest: [here](/Unit_Testing/GTest_minimum/)
