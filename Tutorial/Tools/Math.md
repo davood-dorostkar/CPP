@@ -25,7 +25,7 @@ int main() {
 }
 ```
 ### Using C++
-```
+```cpp
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
