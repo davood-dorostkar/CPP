@@ -31,9 +31,9 @@ void arrayAsPointer(int *array, int size)
 }
 ```
 ```cpp
-void arraySized(int array[3], int size)
+void arraySized(int array[3])
 {
-    for(int i=0; i<size; i++)
+    for(int i=0; i<3; i++)
         std::cout<<array[i]<<" ";
 }
 ```
