@@ -46,7 +46,7 @@ void print(int array[], int size)
         std::cout<<array[i]<<" ";
 }
 ```
-method 4
+- method 4
 ```cpp
 template<size_t T>
 void print(std::array<int , T> array)
