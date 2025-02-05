@@ -22,25 +22,36 @@ int multiArray[row][col]
 ![](/images/m-dim-array.jpeg)
 
 ## Pass arrays to functions
-there are 3 ways:
+- method 1
 ```cpp
-void arrayAsPointer(int *array, int size)
+void print(int *array, int size)
 {
     for(int i=0; i<size; i++)
         std::cout<<array[i]<<" ";
 }
 ```
+- method 2
 ```cpp
-void arraySized(int array[3])
+void print(int array[3])
 {
     for(int i=0; i<3; i++)
         std::cout<<array[i]<<" ";
 }
 ```
+- method 3
 ```cpp
-void arrayUnSized(int array[], int size)
+void print(int array[], int size)
 {
     for(int i=0; i<size; i++)
+        std::cout<<array[i]<<" ";
+}
+```
+method 4
+```cpp
+template<size_t T>
+void print(std::array<int , T> array)
+{
+    for(size_t i=0; i<T; i++)
         std::cout<<array[i]<<" ";
 }
 ```
