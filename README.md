@@ -8,7 +8,7 @@
 2. [String](/Tutorial/Language-Basics/String.md)
 3. [Arrays](/Tutorial/Language-Basics/Arrays.md)
 4. [Loops](/Tutorial/Language-Basics/Loops.md)
-5. [Arithmetic Operations](/Tutorial/Language-Basics/Arithmetic-operations)
+5. [Arithmetic Operations](/Tutorial/Language-Basics/Arithmetic-operations.md)
 6. [Conditionals](/Tutorial/Language-Basics/Conditionals.md)
 
 ## Language Intermediate
