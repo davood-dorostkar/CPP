@@ -2,7 +2,7 @@ An inline function in C++ is a function that is expanded in place by the compile
 
 The main advantage of using inline functions is that it can lead to faster code execution, as the overhead of a function call is eliminated. This is especially beneficial for small functions that are called frequently in a program.
 
-### Pros
+## Pros
 
 1. Faster execution: Inline functions can reduce the overhead of function calls and improve performance, especially for small functions that are called frequently.
 
@@ -10,7 +10,7 @@ The main advantage of using inline functions is that it can lead to faster code 
 
 3. Optimization opportunities: Inline functions can provide opportunities for compiler optimizations, such as loop unrolling and constant folding.
 
-### Cons
+## Cons
 
 1. Code bloat: If inline functions are used excessively or for large functions, it can result in code bloat and increase the size of the executable code.
 
@@ -18,7 +18,7 @@ The main advantage of using inline functions is that it can lead to faster code 
 
 3. Increased compile time: The inlining process can increase the compile time of the program, as the compiler needs to duplicate the function code at each call site.
 
-### Example
+## Example
 
 ```cpp
 #include <iostream>
@@ -33,4 +33,49 @@ int main() {
   std::cout << "The maximum of " << x << " and " << y << " is " << z << std::endl;
   return 0;
 }
+```
+## Example of execution time
+```cpp
+#include <iostream>
+#include <chrono>
+
+inline void func1(int a)
+{
+    a++;
+}
+
+void func2(int a)
+{
+    a++;
+}
+
+int main()
+{
+    std::chrono::time_point<std::chrono::high_resolution_clock> start;
+    std::chrono::time_point<std::chrono::high_resolution_clock> end;
+
+    start = std::chrono::high_resolution_clock::now();
+    for(int i = 0; i < 1E6; i++)
+    {
+        func1(i);
+    }
+    end = std::chrono::high_resolution_clock::now();
+    std::cout << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() << std::endl;
+
+
+    start = std::chrono::high_resolution_clock::now();
+    for(int i = 0; i < 1E6; i++)
+    {
+        func2(i);
+    }
+    end = std::chrono::high_resolution_clock::now();
+    std::cout << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() << std::endl;
+    
+    return 0;
+}
+```
+### output:
+```
+1941
+2018
 ```
