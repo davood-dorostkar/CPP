@@ -131,7 +131,7 @@ it is interesting that in the code below, the variable `intPrt` is stored in `st
 int *intPrt = new int;
 ```
 
-## new class
+## Arrow Operator
 
 If you use this method to instantiate classes, Because `c` is actually a pointer and not a real class, you should first dereference it in order to access its members:
 
