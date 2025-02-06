@@ -98,9 +98,7 @@ private:
     Entity* m_Ptr;
 public:
     ScopedPtr(Entity* ptr)
-        : m_Ptr(ptr)
-    {
-    }
+        : m_Ptr(ptr){}
 
     ~ScopedPtr()
     {
@@ -143,7 +141,7 @@ Cube *c = new Cube;
 (*c).getLength();
 ```
 
-This syntax is weird; so in C++ we have the arrow operator `->` which does the same thing and is better syntax:
+This syntax is weird; so in C/C++ we have the arrow operator `->` which does the same thing and is better syntax:
 
 ```cpp
 Cube *c = new Cube;
