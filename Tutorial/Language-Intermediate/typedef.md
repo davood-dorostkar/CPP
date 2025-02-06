@@ -102,7 +102,7 @@ Using `using` (better for templates):
 using StringIntMap = std::map<std::string, int>;
 ```
 ## typedef usage with struct
-
+> This limitation is only in C. in C++ you can treat structs exactly like classes and you can but do not need to specify `struct` keyword.
 ### 1. Using a `struct`
 When defining a regular `struct`, each time you want to declare a variable, you must explicitly use the `struct` keyword:
 
