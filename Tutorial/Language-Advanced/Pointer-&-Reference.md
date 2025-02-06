@@ -50,7 +50,7 @@ if you want a second pointer to point to a first pointer, you need to treat the 
 int main() {
     int a = 10;          
     int *ptr = &a;       
-    int **pptr = &ptr;   // here we get the address of ptr with & like a normal variable
+    int **pptr = &ptr;   // here we get the address of ptr with "&" like a normal variable
 
     cout << **pptr << endl;  
 
