@@ -45,6 +45,18 @@ ref = 5; // same result
 ```
 
 ## Pointer & pointer-to-pointer
+if you want a second pointer to point to a first pointer, you need to treat the first pointer like an ordinary variable:
+```cpp
+int main() {
+    int a = 10;          
+    int *ptr = &a;       
+    int **pptr = &ptr;   // here we get the address of ptr with & like a normal variable
+
+    cout << **pptr << endl;  
+
+    return 0;
+}
+```
 
 ![](/images/ptr-to-ptr.jpeg)
 
