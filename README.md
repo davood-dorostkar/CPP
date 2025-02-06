@@ -31,6 +31,7 @@
 9. [Constructors](/Tutorial/Language-Advanced/Constructors.md)
 10. [lvalues and rvalues](/Tutorial/Language-Advanced/lvalue-rvalue.md)
 11. [Function Pointers](/Tutorial/Language-Advanced/func-pointer.md)
+12. [Exception](/Tutorial/Language-Advanced/exception.md)
 
 ## Modern C++
 
