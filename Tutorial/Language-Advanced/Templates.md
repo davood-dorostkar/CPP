@@ -1,6 +1,6 @@
 with templates you can define a single function or class for different data types.
 ## Template function
-### Define
+### Definition
 ```cpp
 template <typename T>
 T sumTwo(T in1, T in2)
@@ -35,18 +35,7 @@ T getBigger(T input1, U input2)
 }
 ```
 ## Template Class
-### Syntax
-```cpp
-template<class T>
-class Score
-{
-private:
-        T scorenumber;
-public:
-       Score(T args){scorenumber = args;}
-};
-```
-### Define
+### Definition
 ```cpp
 template <class T>
 class StudentRecord
