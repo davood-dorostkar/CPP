@@ -186,3 +186,4 @@ int main()
     return 0;
 }
 ```
+also, if you change the above code from references to pointers, it doesn't give segfault but gives a `NULL`, which is also meaningless. 
