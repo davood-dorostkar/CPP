@@ -32,6 +32,7 @@ However, you don't always need to write `throw` manually, because some functions
 #### This Code Work Without `throw`
 
 ```cpp
+std::vector<int> my_array(10);
 try
 {
     std::cout << my_array.at(500) << std::endl;
@@ -59,7 +60,7 @@ int main()
 
     try
     {
-        if (500 >= my_array.size())  // Manual check required
+        if (10 < my_array.size())  // Manual check required
             throw std::out_of_range("Index out of bounds!");
 
         std::cout << my_array[500] << std::endl;
