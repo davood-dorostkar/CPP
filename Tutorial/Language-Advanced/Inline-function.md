@@ -76,6 +76,6 @@ int main()
 ```
 ### output:
 ```
-1941
-2018
+1941 // with inline
+2018 // with function call
 ```
