@@ -42,6 +42,7 @@
 5. [Structured Binding](/Tutorial/Modern/binding.md)
 6. [Lambda](/Tutorial/Language-Advanced/lambda.md)
 7. [auto](/Tutorial/Modern/auto.md)
+8. [atomic](/Tutorial/Modern/atomic.md)
 
 ## Object Oriented Programming
 
