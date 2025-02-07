@@ -110,6 +110,7 @@ public:
 Cube func(Cube c)
 {
     std::cout << c.name << std::endl;
+    return c;
 }
 
 int main()
