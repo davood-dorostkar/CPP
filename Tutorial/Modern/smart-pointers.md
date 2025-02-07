@@ -70,6 +70,10 @@ std::cout << "\nUpdated unique ptr!"<< std::endl;
 std::cout << "shared ptr: " << *sptr << std::endl;
 std::cout << "unique ptr: " << *uptr << std::endl;
 ```
+the above code is the same as this:
+```cpp
+uptr = std::make_unique<int>(*sptr);
+```
 ### Example
 ```cpp
 #include <iostream>
