@@ -57,13 +57,14 @@ If you were using `operator[]` instead of `.at()`, no exception would be thrown 
 int main()
 {
     std::vector<int> my_array(10);
-
+    int i;
+    std::cin >> i;
     try
     {
-        if (10 < my_array.size())  // Manual check required
+        if (i > my_array.size() - 1)  // Manual check required
             throw std::out_of_range("Index out of bounds!");
 
-        std::cout << my_array[500] << std::endl;
+        std::cout << my_array[i] << std::endl;
     }
     catch (const std::exception &e)
     {
