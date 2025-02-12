@@ -1,34 +1,99 @@
 # const
-## pass to function
-it is a best practice to make sure the function will not change the variable value even inside the function scope. if the function changes the variable, you will get a compiler error.
+
+## 1. Basic `const` Variable
+`const` ensures that a variable cannot be modified after initialization.
 ```cpp
-int doubleInput(const int input)
-{
-    // input++; // adding this will produce a compile error
-    int h = input *2;
-    return h;
+#include <iostream>
+
+int main() {
+    const int MAX_AGE = 90;
+    // MAX_AGE = 100; // Error: Cannot modify a const variable
+    std::cout << "Max Age: " << MAX_AGE << std::endl;
+    return 0;
 }
 ```
-## const after function
-this means that the function is not allowed to alter the `this` object.
 
-### Example
+---
+
+## 2. `const` with Pointers
+There are three ways to use `const` with pointers:
+
+1. **Pointer to `const` Data (Data cannot be changed)**
 ```cpp
-struct X
-{
-    void foo() const // <== The implicit "this" pointer is const-qualified!
-    {
-        _x = 42; // ERROR! The "this" pointer is implicitly const
-        _y = 42; // OK (_y is mutable)
+const int value = 5;
+const int* ptr = &value; // Pointer to constant int
+// *ptr = 10; // Error: Cannot modify value
+```
+
+2. **`const` Pointer (Pointer itself cannot change)**
+```cpp
+int value = 5;
+int value2 = 10;
+int* const ptr = &value; // Constant pointer to int
+*ptr = 20; // Allowed
+// ptr = &value2; // Error: Cannot reassign pointer
+```
+
+3. **`const` Pointer to `const` Data (Neither pointer nor data can change)**
+```cpp
+const int value = 5;
+const int* const ptr = &value; 
+// *ptr = 10; // Error: Cannot modify value
+// ptr = &value2; // Error: Cannot change pointer
+```
+
+---
+
+## 3. `const` with Class Methods
+A `const` method in a class guarantees that it does not modify the object's state.
+```cpp
+class Entity {
+private:
+    int x;
+public:
+    Entity(int val) : x(val) {}
+
+    int getX() const { // Const method
+        return x;
     }
 
-    void bar(X& obj) const // <== The implicit "this" pointer is const-qualified!
-    {
-        obj._x = 42; // OK! obj is a reference to non-const
-        _x = 42; // ERROR! The "this" pointer is implicitly const
+    void setX(int val) { // Non-const method
+        x = val;
     }
-
-    int _x;
-    mutable int _y;
 };
 ```
+
+---
+
+## 4. `const` with Function Parameters
+Passing by `const` reference prevents unnecessary copies and modification.
+```cpp
+void printEntity(const Entity& e) { // Cannot modify e
+    std::cout << "Entity X: " << e.getX() << std::endl;
+}
+```
+
+---
+
+## 5. `mutable` Keyword
+The `mutable` keyword allows a variable to be modified inside a `const` method.
+```cpp
+class Entity {
+private:
+    mutable int debugCounter = 0;
+public:
+    void log() const {
+        debugCounter++; // Allowed due to 'mutable'
+        std::cout << "Logging Entity" << std::endl;
+    }
+};
+```
+
+---
+
+## Summary
+- `const` variables cannot be modified.
+- `const` pointers affect either the pointer or the value it points to.
+- `const` methods prevent modifying the class.
+- `const` references prevent copying and modification.
+- `mutable` allows exceptions inside `const` methods.
