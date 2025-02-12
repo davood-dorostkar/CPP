@@ -42,6 +42,7 @@
 5. [Structured Binding](/Tutorial/Modern/binding.md)
 6. [Lambda](/Tutorial/Modern/lambda.md)
 7. [auto](/Tutorial/Modern/auto.md)
+8. [constexpr](/Tutorial/Modern/constexpr.md)
 
 ## Multi-threading
 1. [atomic](/Tutorial/Threading/atomic.md)
