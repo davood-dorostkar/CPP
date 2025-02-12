@@ -131,3 +131,16 @@ you can also set a default value for the non-type template parameter:
 ```cpp
 template <size_t n=1>
 ```
+
+## Non-type template with deduced types
+
+In C++17, `auto` can be used for **non-type template parameters** with deduced types, allowing more flexible and generic template code.  
+
+Example:  
+```cpp
+template <auto N> 
+void func() { 
+    std::cout << N << std::endl; 
+}
+```
+- This allows `N` to be any constant expression, without specifying its type explicitly.  
