@@ -22,10 +22,12 @@ There are three ways to use `const` with pointers:
 ```cpp
 const int value = 5;
 const int* ptr = &value; // Pointer to constant int
+int const* ptr = &value; // the same 
 // *ptr = 10; // Error: Cannot modify value
 ```
 
 2. **`const` Pointer (Pointer itself cannot change)**
+what makes the difference with the above method is that here `const` is placed after the `*`.
 ```cpp
 int value = 5;
 int value2 = 10;
