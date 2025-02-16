@@ -68,3 +68,38 @@ Hello from main thread
 The key challenge with threading is synchronization. When we launch a thread, its execution is independent, and it may finish before or after the main thread. To ensure correct order, we use `join()` to make the main thread wait for the newly created thread to finish before terminating.
 
 Without the `join()`, the main program might finish execution while the thread is still running, leading to errors like a core dump. 
+
+## Creating a Thread with a Lambda
+
+In the previous example, we had a `test` function that we used to run in a thread. Now, instead of defining a separate function, we’ll embed it directly in the `main` function as a lambda.
+
+```cpp
+#include <iostream>
+#include <thread>
+
+int main() {
+    // Define a lambda function
+    auto lambda = [](int x) {
+        std::cout << "Hello from thread\n";
+        std::cout << "Argument passed in: " << x << std::endl;
+    };
+
+    // Create a thread using the lambda
+    std::thread myThread(lambda, 100);
+
+    // Wait for the thread to finish
+    myThread.join();
+
+    std::cout << "Hello from main thread\n";
+
+    return 0;
+}
+```
+
+## std::thread Input
+
+When using the `std::thread` constructor, you can pass a function pointer, a standard function, or a lambda function like we did here. It's a flexible way to define the work that a thread will perform.
+
+## Copy vs Move Threads
+
+**threads are non-copyable**. This means you cannot copy a thread, and you’ll see that the copy constructor for `std::thread` is deleted in the documentation. You can, however, use *move semantics* to pass threads around if necessary.
