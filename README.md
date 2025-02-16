@@ -47,6 +47,7 @@
 ## Multi-threading
 1. [atomic](/Tutorial/Threading/atomic.md)
 2. [Concurrency vs Parallelism](/Tutorial/Threading/concurrent-parallel.md)
+3. [Thread](/Tutorial/Threading/thread.md)
 
 ## Object Oriented Programming
 
