@@ -98,5 +98,6 @@
 
 ## Misc
 
-1. [Math](/Tutorial/Tools/Math.md)
-2. [Time With Chrono](/Tutorial/Tools/Time-with-chrono.md)
+1. [Math](/Tutorial/Misc/Math.md)
+2. [Time With Chrono](/Tutorial/Misc/Time-with-chrono.md)
+3. [VSCode](/Tutorial/Misc/vscode.md)
