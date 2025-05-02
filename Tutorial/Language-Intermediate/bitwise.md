@@ -1,6 +1,6 @@
 # Bitwise Operations
 ## Intro
-- a two digit hex is at most: 16^0 + 16^1 = 255 ;which also corresponds to 1 byte. 
+- a two digit hex can take 16^2 states, which is at most: 255 ; which also corresponds to 1 byte (2^8). 
 - an integer takes 4 bytes (typically)
 
 ## Bit Shift
