@@ -78,6 +78,41 @@ public:
 MyDerivedClass obj2("Hello from Base", 10); // Instantiation
 ```
 
+### Important: How Initializer list works
+**in short: it calls the member constructor internally**
+
+assume we have
+```cpp
+class MyClass
+{
+public:
+    MyClass(int size)
+        : area(size, std::vector<double>(size, 0.0)) {}
+private:
+    std::vector<std::vector<double>> area;
+};
+```
+this means:
+
+- Initialize the area member variable using the constructor of `std::vector<std::vector<double>>` that takes two arguments:
+
+  - An integer size (number of outer vectors)
+
+  - A vector of doubles (each inner vector)
+ 
+for example if we have this:
+```cpp
+class MyClass
+{
+public:
+    MyClass(int a)
+        : x(a) {}
+private:
+    int x;
+};
+```
+it doesn't mean `x = a;`, instead it means `x = int(a);` which is calling the `int` constructor. this understanding becomes more important for complex types.
+
 ## Copy Constructor
 
 You can define a copy constructor in your class. It must take exactly one input, which is a reference to the same object type.
