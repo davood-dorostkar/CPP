@@ -35,6 +35,8 @@ An **atomic operation** is an operation that **completes in a single step** with
 ## **Atomic Operations in C and C++**
 C++ provides `std::atomic` for atomic operations:
 
+run `g++ atomic.cpp -o atomic && ./atomic && rm atomic`:
+
 ```cpp
 #include <iostream>
 #include <atomic>
