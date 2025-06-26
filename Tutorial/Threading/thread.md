@@ -47,6 +47,96 @@ int main() {
 
 In this program, we create a new thread and pass an argument (`100`) to the `test` function. The `join()` call ensures that the main thread waits for `myThread` to finish before proceeding.
 
+## The thread's input
+
+passing a function to a thread can be like `std::thread t1(func)` or `std::thread t1(&func)` and both are correct. `&func` means you're explicitly taking the function pointer. if using `std::thread t2(func)`, it is implicitly converted to a function pointer. In C++, a function name decays to a pointer to the function when used in this context.
+
+If you had a functor (like a class with `operator()`), or a `lambda`, the behavior would differ. 
+
+In short: 
+* Use `&` with **function pointers**, optionally.
+* Don’t use `&` with **functors** or **lambdas** — just pass them as-is.
+
+---
+
+### Functor (Callable Object)
+
+```cpp
+struct MyFunctor {
+    void operator()() const {
+        // Do something
+    }
+};
+```
+
+✅ This works:
+
+```cpp
+std::thread t1(MyFunctor{});
+```
+
+* `MyFunctor{}` creates a **temporary object**.
+* The thread constructor sees a **callable object**, and it invokes `operator()` in the new thread.
+* This is the normal and idiomatic way to use functors with `std::thread`.
+
+❌ This does **not** work:
+
+```cpp
+std::thread t2(&MyFunctor{});
+```
+
+* This tries to take the **address of a temporary object**, which is not allowed.
+* Compiler error: *"taking the address of a temporary object"*.
+
+---
+
+### Lambda 
+
+```cpp
+auto myLambda = []() {
+    // Do something
+    std::cout << "Running lambda\n";
+};
+```
+
+✅ This works:
+
+```cpp
+std::thread t1(myLambda);
+```
+
+* `myLambda` is a **callable object** (like a functor).
+* It gets copied into the thread, and `operator()` is invoked.
+* This is the **normal** and correct way to launch a lambda in a thread.
+
+❌ This does **not** work:
+
+```cpp
+std::thread t2(&myLambda);
+```
+
+* Error: *no matching function for call to ‘std::thread::thread(\<lambda ()>*)’\*
+* Because:
+
+  * `myLambda` is an **object**, not a function.
+  * `&myLambda` is a **pointer to a lambda object**, not a callable thing.
+  * `std::thread` expects a callable as its first argument, not a pointer to one.
+
+You can also pass **an unnamed lambda** directly:
+
+```cpp
+std::thread t3([]() {
+    std::cout << "Lambda in thread\n";
+});
+```
+
+| Callable Type    | With `&`         | Without `&` | Notes                        |
+| ---------------- | ---------------- | ----------- | ---------------------------- |
+| Free function    | ✅ Yes            | ✅ Yes       | `func` decays to `&func`     |
+| Functor object   | ❌ No (`&temp`)   | ✅ Yes       | Must pass object directly    |
+| Lambda (named)   | ❌ No (`&lambda`) | ✅ Yes       | `lambda` is already callable |
+| Lambda (unnamed) | ❌ No (`&[](){}`) | ✅ Yes       | Always pass as-is            |
+
 ## Compilation and Execution
 
 To compile the program, make sure to link the pthread library (on Linux):
