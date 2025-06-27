@@ -52,7 +52,7 @@ In this program, we create a new thread and pass an argument (`100`) to the `tes
 To compile the program, make sure to link the pthread library (on Linux):
 
 ```bash
-g++ -std=c++17 thread_example.cpp -o thread_example -pthread
+g++ -std=c++17 thread_example.cpp -o thread_example -lpthread
 ```
 
 Running the program will produce the following output:

@@ -3,7 +3,6 @@
 # C++ Programming Language
 
 ## Language Basics
-
 1. [Data Types](/Tutorial/Language-Basics/Data-types.md)
 2. [String](/Tutorial/Language-Basics/String.md)
 3. [Arrays](/Tutorial/Language-Basics/Arrays.md)
@@ -19,7 +18,6 @@
 5. [typedef](/Tutorial/Language-Intermediate/typedef.md)
 
 ## Language Advanced
-
 1. [Preprocessors](/Tutorial/Language-Advanced/Preprocessors.md)
 2. [Namespace](/Tutorial/Language-Advanced/Namespace.md)
 3. [const](/Tutorial/Language-Advanced/const.md)
@@ -34,7 +32,6 @@
 12. [Exception](/Tutorial/Language-Advanced/exception.md)
 
 ## Modern C++
-
 1. [Smart Pointers](/Tutorial/Modern/smart-pointers.md)
 2. [Variadic Templates & Parameter Pack](/Tutorial/Modern/parameter-pack.md)
 3. [Forwarding References](/Tutorial/Modern/forwarding-reference.md)
@@ -45,12 +42,12 @@
 8. [constexpr](/Tutorial/Modern/constexpr.md)
 
 ## Multi-threading
-1. [atomic](/Tutorial/Threading/atomic.md)
-2. [Concurrency vs Parallelism](/Tutorial/Threading/concurrent-parallel.md)
-3. [Thread](/Tutorial/Threading/thread.md)
+1. [Concurrency vs Parallelism](/Tutorial/Threading/concurrent-parallel.md)
+2. [Thread](/Tutorial/Threading/thread.md)
+3. [Multiple threads](/Tutorial/Threading/multip-threads.md)
+4. [atomic](/Tutorial/Threading/atomic.md)
 
 ## Object Oriented Programming
-
 1. [Class](/Tutorial/OOP/Class.md)
 2. [Inheritance](/Tutorial/OOP/Inheritance.md)
 3. [Abstraction](/Tutorial/OOP/Abstraction.md)
@@ -58,7 +55,6 @@
 5. [Polymorphism](/Tutorial/OOP/Polymorphism.md)
 
 ## Data Structures & STL
-
 1. [Vector](/Tutorial/DS-STL/vector.md)
 2. [Linked List](/Tutorial/DS-STL/linkedList.md)
 3. [Queue](/Tutorial/DS-STL/queue.md)
@@ -74,7 +70,6 @@
 13. [Tuple](/Tutorial/DS-STL/tuple.md)
 
 ## Algorithms
-
 1. Graph Traversal
    - [BFS & DFS](/Tutorial/Algorithms/bfs.md)
 2. Minimum Spanning Trees (MST)
@@ -82,7 +77,6 @@
 3. [Dijkstra](/Tutorial/Algorithms/dijkstra.md)
 
 ## Build Systems
-
 1. [CMAKE](/Tutorial/Build-Systems/CMAKE.md)
 2. [Compilers](/Tutorial/Build-Systems/Compilers.md)
 
@@ -90,14 +84,12 @@
 1. [GTest](/Unit_Testing/gtest.md)
 
 ## Qt
-
 1. [Add Icon](/Tutorial/Qt/Qt_Add-Application-Icon.md)
 2. [Make Executable In Windows](/Tutorial/Qt/Qt_Make-executable-in-windows.md)
 3. [Qt Test Framework](/Tutorial/Qt/Qt-test-framework.md)
 4. [Qt Best Practices](/Tutorial/Qt/best-practice.md)
 
 ## Misc
-
 1. [Math](/Tutorial/Misc/Math.md)
 2. [Time With Chrono](/Tutorial/Misc/Time-with-chrono.md)
 3. [VSCode](/Tutorial/Misc/vscode.md)
