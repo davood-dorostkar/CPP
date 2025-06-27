@@ -46,6 +46,7 @@
 2. [Thread](/Tutorial/Threading/thread.md)
 3. [Multiple threads](/Tutorial/Threading/multip-threads.md)
 4. [jthreads](/Tutorial/Threading/jthread.md)
+4. [Mutex](/Tutorial/Threading/mutex.md)
 5. [atomic](/Tutorial/Threading/atomic.md)
 
 ## Object Oriented Programming
