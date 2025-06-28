@@ -1,25 +1,22 @@
 #include <iostream>
-#include <atomic>
 #include <thread>
+#include <vector>
+#include <atomic>
 
-int nonAtomicCounter = 0;  // Non-Atomic variable
-std::atomic<int> AtomicCounter(0);  // Atomic variable
+std::atomic<int> shared_value = 0;
 
-void increment() {
-    for (int i = 0; i < 100000; i++) {
-        nonAtomicCounter++;  // non-Atomic increment
-        AtomicCounter++;  // Atomic increment
-    }
+void increment_shared_value() {
+    shared_value++;
 }
 
 int main() {
-    std::thread t1(increment);
-    std::thread t2(increment);
+    std::vector<std::thread> threads;
 
-    t1.join();
-    t2.join();
+    for (int i = 0; i < 1000; ++i)
+        threads.push_back(std::thread(increment_shared_value));
 
-    std::cout << "Final non-atomic counter value: " << nonAtomicCounter << std::endl;
-    std::cout << "Final atomic counter value: " << AtomicCounter.load() << std::endl;
+    for (auto& t : threads) t.join();
+
+    std::cout << "Final shared value: " << shared_value << std::endl;
     return 0;
 }

@@ -48,7 +48,7 @@
 4. [jthreads](/Tutorial/Threading/jthread.md)
 5. [Mutex](/Tutorial/Threading/mutex.md)
 6. [Deadlock](/Tutorial/Threading/deadlock.md)
-7. [atomic](/Tutorial/Threading/atomic.md)
+7. [Atomic](/Tutorial/Threading/atomic.md)
 
 ## Object Oriented Programming
 1. [Class](/Tutorial/OOP/Class.md)
