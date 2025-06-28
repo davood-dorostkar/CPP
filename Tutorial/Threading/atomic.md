@@ -83,7 +83,7 @@ int main() {
 
 #### 💡 Output (Always Deterministic):
 ```bash
-g++ -std=c++17 atomic.cpp -o atomic && ./atomic && rm atomic
+g++ -std=c++17 atomic.cpp -o atomic -lpthread && ./atomic && rm atomic
 ```
 
 ```
