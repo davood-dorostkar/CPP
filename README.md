@@ -46,10 +46,11 @@
 2. [Thread](/Tutorial/Threading/thread.md)
 3. [Multiple threads](/Tutorial/Threading/multip-threads.md)
 4. [jthreads](/Tutorial/Threading/jthread.md)
-5. [Mutex](/Tutorial/Threading/mutex.md)
-6. [Deadlock](/Tutorial/Threading/deadlock.md)
+5. [Mutex & Race conditions](/Tutorial/Threading/mutex.md)
+6. [Deadlock & lock_guard](/Tutorial/Threading/deadlock.md)
 7. [Atomic](/Tutorial/Threading/atomic.md)
 8. [Multithreading Graphics Example](/Tutorial/Threading/stml_grid.md)
+9. [Condition Variable & unique_lock](/Tutorial/Threading/condition-var.md)
 
 ## Object Oriented Programming
 1. [Class](/Tutorial/OOP/Class.md)
