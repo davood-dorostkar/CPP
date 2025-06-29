@@ -52,6 +52,7 @@
 8. [Multithreading Graphics Example](/Tutorial/Threading/stml_grid.md)
 9. [Condition Variable & unique_lock](/Tutorial/Threading/condition-var.md)
 10. [async & future](/Tutorial/Threading/async-future.md)
+11. [future status](/Tutorial/Threading/future-status.md)
 
 ## Object Oriented Programming
 1. [Class](/Tutorial/OOP/Class.md)
