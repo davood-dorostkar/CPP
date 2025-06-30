@@ -44,13 +44,13 @@ This program contains a **data race** — all threads are updating `shared_value
 ### 🧵 GCC:
 
 ```bash
-g++ -std=c++17 -fsanitize=thread datarace.cpp -o prog -lpthread
+g++ -std=c++17 -fsanitize=thread sanitizer.cpp -o sanitizer -lpthread
 ```
 
 ### 🧵 Clang:
 
 ```bash
-clang++ -std=c++17 -fsanitize=thread datarace.cpp -o prog -lpthread
+clang++ -std=c++17 -fsanitize=thread sanitizer.cpp -o sanitizer -lpthread
 ```
 
 This enables the **Thread Sanitizer**, which instruments your program to detect unsafe memory accesses between threads.
@@ -59,7 +59,7 @@ This enables the **Thread Sanitizer**, which instruments your program to detect 
 ## ▶️ Step 2: Run the Program
 
 ```bash
-./prog
+./sanitizer
 ```
 
 ### 🧨 Output:

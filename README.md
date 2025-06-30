@@ -43,16 +43,18 @@
 
 ## Multi-threading
 1. [Concurrency vs Parallelism](/Tutorial/Threading/concurrent-parallel.md)
-2. [Thread](/Tutorial/Threading/thread.md)
-3. [Multiple threads](/Tutorial/Threading/multip-threads.md)
-4. [jthreads](/Tutorial/Threading/jthread.md)
-5. [Mutex & Race conditions](/Tutorial/Threading/mutex.md)
+2. [thread](/Tutorial/Threading/thread.md)
+3. [Run Multiple threads](/Tutorial/Threading/multip-threads.md)
+4. [jthread](/Tutorial/Threading/jthread.md)
+5. [mutex & Race conditions](/Tutorial/Threading/mutex.md)
 6. [Deadlock & lock_guard](/Tutorial/Threading/deadlock.md)
-7. [Atomic](/Tutorial/Threading/atomic.md)
+7. [atomic](/Tutorial/Threading/atomic.md)
 8. [Multithreading Graphics Example](/Tutorial/Threading/stml_grid.md)
-9. [Condition Variable & unique_lock](/Tutorial/Threading/condition-var.md)
+9. [condition_variable & unique_lock](/Tutorial/Threading/condition-var.md)
 10. [async & future](/Tutorial/Threading/async-future.md)
-11. [future status](/Tutorial/Threading/future-status.md)
+11. [future_status](/Tutorial/Threading/future-status.md)
+12. [Thread Sanitizer](/Tutorial/Threading/sanitizer.md)
+13. [try_lock](/Tutorial/Threading/trylock.md)
 
 ## Object Oriented Programming
 1. [Class](/Tutorial/OOP/Class.md)
