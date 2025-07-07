@@ -1,12 +1,12 @@
-# Deadlock and `std::lock_guard`
+# Deadlock, `std::lock_guard`, `std::scoped_lock`
 
-## 🧊 Summary: Avoiding Deadlocks with `std::lock_guard` (RAII in Multithreading)
+**Deadlock** is a situation where threads are permanently blocked because one of them **never releases a lock**. This is a critical issue in concurrent programming, often caused by:
 
-**deadlock** is a situation where threads are permanently blocked because one of them **never releases a lock**. This is a critical issue in concurrent programming, often caused by **forgetting to unlock** a `std::mutex`, especially in the presence of **exceptions**.
+- **forgetting to unlock** a `std::mutex`, especially in the presence of **exceptions**.
+- creating multiple locks that each depend on the other, which makes **circular waits**
 
+## 🧪 1. Deadlocks from unreleased locks
 To solve this, we use **`std::lock_guard`**, a C++ RAII wrapper that ensures **mutexes are automatically unlocked** when the `lock_guard` goes out of scope — even if an exception is thrown.
-
-## 🧪 Tutorial: Preventing Deadlocks Using `std::lock_guard`
 
 ### ❌ Problem: Manual Locking with Missing Unlock
 
@@ -106,18 +106,8 @@ Final shared value: 1000
 
 ---
 
-## 🔍 Key Concepts
 
-| Concept                       | Description                                                                                  |
-| ----------------------------- | -------------------------------------------------------------------------------------------- |
-| 🧊 **Deadlock**               | When a thread never releases a lock, blocking others indefinitely                            |
-| ⚠️ Manual `lock()`/`unlock()` | Error-prone — if an exception occurs or `unlock()` is forgotten, your app can hang           |
-| 🛡️ `std::lock_guard`         | RAII-based helper that **automatically unlocks** the mutex at the end of the scope           |
-| 🧠 RAII                       | *Resource Acquisition Is Initialization*: release resources when an object goes out of scope |
-
----
-
-## 🧭 Extra Tip: Where to Place Lock Guards?
+### 🧭 Extra Tip: Where to Place Lock Guards?
 
 Lock guards should **cover only the code that needs synchronization** — the **critical section**:
 
@@ -134,9 +124,7 @@ void worker() {
 }
 ```
 
----
-
-## ✅ Conclusion
+### ✅ Conclusion
 
 Using `std::lock_guard` is the **best practice** for locking in C++. It:
 
@@ -144,5 +132,108 @@ Using `std::lock_guard` is the **best practice** for locking in C++. It:
 * Makes code **cleaner and safer**,
 * Ensures locks are released **even when exceptions happen**.
 
+
+## 🪤 2. Deadlock from Circular Waits
+
+Sometimes, deadlock come from threads **locking mutexes in different orders**.
+
+This is a classic mistake in concurrent programming — and it **cannot be solved with `lock_guard` alone**.
+
+### ⚠️ Problem: Inconsistent Lock Order
+
+```cpp
+#include <iostream>
+#include <thread>
+#include <mutex>
+
+std::mutex mutex1, mutex2;
+
+void thread1()
+{
+    std::cout << "Thread 1 acquired mutex 1" << std::endl;
+    mutex1.lock();
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::cout << "Thread 1 trying to acquire mutex 2" << std::endl;
+    mutex2.lock();
+    std::cout << "Thread 1 acquired mutex 2" << std::endl;
+
+    // Critical section...
+    mutex2.unlock();
+    mutex1.unlock();
+}
+
+void thread2()
+{
+    std::cout << "Thread 2 acquired mutex 2" << std::endl;
+    mutex2.lock();
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::cout << "Thread 2 trying to acquire mutex 1" << std::endl;
+    mutex1.lock();
+    std::cout << "Thread 2 acquired mutex 1" << std::endl;
+
+    // Critical section...
+    mutex1.unlock();
+    mutex2.unlock();
+}
+
+int main()
+{
+    std::thread t1(thread1);
+    std::thread t2(thread2);
+    t1.join(); t2.join();
+    return 0;
+}
+```
+### 💡 Output 
+execute: 
+```bash
+g++ -std=c++17 deadlock2.cpp -o deadlock2 -lpthread && ./deadlock2 && rm deadlock2
+```
+
+### 💥 What Happens?
+
+1. **Thread 1** locks `mutex1` and waits for `mutex2`
+2. **Thread 2** locks `mutex2` and waits for `mutex1`
+3. Both are waiting for each other **forever** — this is **deadlock by circular wait**!
+
+⛔ `lock_guard` **won’t help** here, because both locks are correctly released — the issue is **order of acquisition**.
+
+---
+
+## ✅ Fix: Use `std::scoped_lock` or Always Lock in Same Order
+
+You can either:
+
+* 💡 **Always lock mutexes in the same order**, OR
+* ✅ Use **`std::scoped_lock`** (C++17), which atomically locks multiple mutexes and avoids deadlock:
+
+```cpp
+void thread_safe()
+{
+    std::scoped_lock lock(mutex1, mutex2); // locks both safely, in consistent order
+    // Critical section
+}
+```
+
+## 🔍 Key Concepts
+
+| Concept                       | Description                                                                                  |
+| ----------------------------- | -------------------------------------------------------------------------------------------- |
+| 🧊 **Deadlock**               | When a thread never releases a lock, blocking others indefinitely                            |
+| ⚠️ Manual `lock()`/`unlock()` | Error-prone — if an exception occurs or `unlock()` is forgotten, your app can hang           |
+| 🛡️ `std::lock_guard`         | RAII-based helper that **automatically unlocks** the mutex at the end of the scope           |
+| 🪤 **Circular wait**   | Each thread waits on a lock held by another — a perfect deadlock cycle              |
+| 🛡️ `std::scoped_lock` | C++17 utility that atomically locks multiple mutexes in **deadlock-safe order**     |
+| 🧠 RAII                       | *Resource Acquisition Is Initialization*: release resources when an object goes out of scope |
+
+
+## 🧠 Takeaway
+let the standard library help you.
+
+✅ Use:
+
+* `std::lock_guard` for **single mutex safety**
+* `std::scoped_lock` for **multiple mutex safety**
+
 ## 💬 Read more
-`std::scoped_lock` (for multiple mutexes) or other smart concurrency patterns like `std::unique_lock` or `std::atomic`!
+other smart concurrency patterns like `std::unique_lock` or `std::atomic`!

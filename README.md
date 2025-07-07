@@ -47,7 +47,7 @@
 3. [Run Multiple threads](/Tutorial/Threading/multip-threads.md)
 4. [jthread](/Tutorial/Threading/jthread.md)
 5. [mutex & Race conditions](/Tutorial/Threading/mutex.md)
-6. [Deadlock & lock_guard](/Tutorial/Threading/deadlock.md)
+6. [Deadlock, lock_guard, scoped_lock](/Tutorial/Threading/deadlock.md)
 7. [atomic](/Tutorial/Threading/atomic.md)
 8. [Multithreading Graphics Example](/Tutorial/Threading/stml_grid.md)
 9. [condition_variable & unique_lock](/Tutorial/Threading/condition-var.md)
