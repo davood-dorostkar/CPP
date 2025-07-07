@@ -55,6 +55,7 @@
 11. [future_status](/Tutorial/Threading/future-status.md)
 12. [Thread Sanitizer](/Tutorial/Threading/sanitizer.md)
 13. [try_lock](/Tutorial/Threading/trylock.md)
+14. [Starvation](/Tutorial/Threading/starvation.md)
 
 ## Object Oriented Programming
 1. [Class](/Tutorial/OOP/Class.md)
