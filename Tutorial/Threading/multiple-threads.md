@@ -11,12 +11,22 @@ Instead of writing repetitive thread creation lines, use a `std::vector<std::thr
 #include <thread>
 #include <vector>
 
-void worker(int id) {
+void simpleWorker(int id) {
     std::cout << "Hello from thread " << std::this_thread::get_id() 
               << ", argument: " << id << std::endl;
 }
 
+std::mutex cout_mutex;
+void safeWorker(int id) {
+    std::lock_guard<std::mutex> guard(cout_mutex);
+    std::cout << "Hello from Thread " << std::this_thread::get_id() 
+              << ", argument: " << id << std::endl;
+}
+
+void (*worker)(int id);
+
 int main() {
+    worker = simpleWorker;
     std::vector<std::thread> threads;
 
     // Launch 10 threads with different arguments

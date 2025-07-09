@@ -71,7 +71,7 @@ Without the `join()`, the main program might finish execution while the thread i
 
 when a thread (like the main thread) reaches a `join()`, it waits until that thread terminates (like when it `return`s), then it can continue.
 
-![](/images/thread.png)
+![](thread.png)
 
 ## Creating a Thread with a Lambda
 

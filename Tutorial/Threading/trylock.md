@@ -102,7 +102,7 @@ g++ -std=c++17 trylock.cpp -o trylock -lpthread && ./trylock && rm trylock
   * Sleep
   * Skip this cycle
 
-![](/images/trylock.png)
+![](trylock.png)
 
 ### 🎮 Game AI or Simulation
 

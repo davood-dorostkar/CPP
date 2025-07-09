@@ -7,7 +7,7 @@ In this lesson, we explore a **fun and visual example** of concurrency using mod
 * How threads can safely update shared data in parallel
 * Real-world design considerations for multi-threaded programs
 
----
+>the full code is [here](sfml_grid.cpp)
 
 ## 🧩 The Problem We're Solving
 
@@ -15,7 +15,6 @@ We're building a **2×2 grid of shapes**. Each shape has a color that updates ev
 
 Visually, the result is a window with 4 changing-colored circles — a cool way to observe **independent concurrent updates**.
 
----
 
 ## 🧱 Project Structure Overview
 
@@ -32,7 +31,6 @@ g++ -std=c++17 sfml_grid.cpp -o sfml_grid -lpthread -lsfml-graphics -lsfml-windo
 ./sfml_grid && rm sfml_grid
 ```
 
----
 
 ## 🧠 Key Concepts
 
@@ -42,7 +40,6 @@ Each thread updates **a different cell** in the grid, so **no two threads access
 
 ✅ When threads operate on **disjoint memory**, you often don’t need `std::mutex`.
 
----
 
 ### 2. **Global Shared Resources**
 
@@ -56,7 +53,6 @@ bool isRunning = true; // Shared flag to stop threads
 * `shapes`: holds the drawable objects (using `unique_ptr` for safe memory)
 * `isRunning`: used to **gracefully signal** all threads to stop
 
----
 
 ## 🧵 Thread Logic: `update_grid`
 
@@ -76,7 +72,6 @@ Each thread:
 
 > 🧠 No mutex is needed because **each (x, y)** maps to a **unique index**: `grid[y*2 + x]`.
 
----
 
 ## 🧼 Initial Setup in `main`
 
@@ -139,7 +134,6 @@ for (auto& th : threads) {
 
 Before the app exits, the main thread **joins all threads**, ensuring they finish cleanly.
 
----
 
 ## 🧠 Concurrency Lessons from the Example
 
@@ -158,7 +152,6 @@ Before the app exits, the main thread **joins all threads**, ensuring they finis
 * The program uses **worker threads** for background computation and a **main thread** for rendering.
 * You could expand this to a larger grid or add logic where worker threads depend on each other — which may then require `mutex`, `condition_variable`, or `atomic`.
 
----
 
 ## 📌 Bonus: Suggestions for Extension
 
@@ -167,8 +160,6 @@ Before the app exits, the main thread **joins all threads**, ensuring they finis
 * Expand to a bigger grid (e.g., 10×10)
 * Use `std::atomic<bool> isRunning` for safety
 * Use `std::jthread` in C++20 for automatic joining
-
----
 
 ## 🔚 Summary
 
@@ -180,6 +171,3 @@ This project is a **practical concurrency demo** showing:
 ✅ Gracefully shutting down a multi-threaded program
 ✅ Using SFML to visualize thread behavior
 
----
-
-Let me know if you want me to **convert this to a Markdown README**, build an **interactive visualization**, or help with **scaling the grid** or using `std::jthread`!
