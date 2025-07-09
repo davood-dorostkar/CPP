@@ -58,6 +58,7 @@
 14. [Starvation](/Tutorial/Threading/starvation.md)
 15. [Priority Inversion](/Tutorial/Threading/priority-inversion.md)
 16. [Race Condition](/Tutorial/Threading/race-conditions.md)
+17. [Semaphore](/Tutorial/Threading/semaphore.md)
 
 ## Object Oriented Programming
 1. [Class](/Tutorial/OOP/Class.md)
