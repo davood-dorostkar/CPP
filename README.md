@@ -56,6 +56,7 @@
 12. [Thread Sanitizer](/Tutorial/Threading/sanitizer.md)
 13. [try_lock](/Tutorial/Threading/trylock.md)
 14. [Starvation](/Tutorial/Threading/starvation.md)
+15. [Priority Inversion](/Tutorial/Threading/priority-inversion.md)
 
 ## Object Oriented Programming
 1. [Class](/Tutorial/OOP/Class.md)
