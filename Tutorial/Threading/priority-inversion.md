@@ -217,7 +217,7 @@ Despite setting `SCHED_FIFO` and priorities **The system still may run the threa
 
 🚨 Even with `sudo`, Linux may **not respect `SCHED_FIFO` priorities unless you set proper ulimits** or configure `/etc/security/limits.conf`.
 
-## 🛠 How to Fix It
+### 🛠 How to Fix It
 
 ```bash
 ulimit -r # check max real-time priority
