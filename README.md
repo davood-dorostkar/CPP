@@ -46,7 +46,7 @@
 2. [thread](/Tutorial/Threading/thread.md)
 3. [Run Multiple threads](/Tutorial/Threading/multip-threads.md)
 4. [jthread](/Tutorial/Threading/jthread.md)
-5. [mutex & Race conditions](/Tutorial/Threading/mutex.md)
+5. [mutex](/Tutorial/Threading/mutex.md)
 6. [Deadlock, lock_guard, scoped_lock](/Tutorial/Threading/deadlock.md)
 7. [atomic](/Tutorial/Threading/atomic.md)
 8. [Multithreading Graphics Example](/Tutorial/Threading/stml_grid.md)
@@ -57,6 +57,7 @@
 13. [try_lock](/Tutorial/Threading/trylock.md)
 14. [Starvation](/Tutorial/Threading/starvation.md)
 15. [Priority Inversion](/Tutorial/Threading/priority-inversion.md)
+16. [Race Condition](/Tutorial/Threading/race-conditions.md)
 
 ## Object Oriented Programming
 1. [Class](/Tutorial/OOP/Class.md)
