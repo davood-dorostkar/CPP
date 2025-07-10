@@ -40,7 +40,7 @@ int main() {
 ### Execution
 
 ```bash
-g++ -std=c++20 -pthread jthread.cpp -o jthread && ./jthread && rm jthread
+g++ -std=c++20 -lpthread jthread.cpp -o jthread && ./jthread && rm jthread
 ```
 
 💡 Output might appear **messed up** due to multiple threads printing simultaneously — this is expected and shows **true concurrency**.
