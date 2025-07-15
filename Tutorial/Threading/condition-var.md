@@ -57,7 +57,11 @@ int main(){
     return 0;
 }
 ```
-⚠️ Pay attention to the fact that the same lock (`gLock`) is used for both threads. But the way we acquire that lock can be different. In fact the thread that is `waiting` on a lock (here the `reporter`) needs to be used with `unique_lock`, because it provides more intelligent features than the simple `lock_guard`, like the ability to sleep. However, the `worker` thread doesn't necessarily need a unique_lock because it is not using any of its features. As a result the lock in the worker can be defined with either `lock_guard` or `unique_lock`, and the first one is prefered here because it is simpler.
+⚠️ Pay attention to the fact that the same lock (`gLock`) is used for both threads. 
+
+But the way we acquire that lock can be different. In fact the thread that is `waiting` on a lock (here the `reporter`) needs to be used with `unique_lock`, because it provides more intelligent features than the simple `lock_guard`, like the ability to sleep. 
+
+However, the `worker` thread doesn't necessarily need a unique_lock because it is not using any of its features. As a result the lock in the worker can be defined with either `lock_guard` or `unique_lock`, and the first one is prefered here because it is simpler.
 
 **Usage**:
 ```bash
