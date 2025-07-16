@@ -69,12 +69,12 @@ g++ -std=c++17 -lpthread condition-var.cpp -o condition && ./condition && rm con
 ```
 
 ## Condition Variable with Predicate
-The syntax `cv.wait(lock, [&] { return !sharedQueue.empty(); })` is a concise way to make a thread wait until a condition is met in a thread-safe manner.
+The syntax `cv.wait(lock, [&] { return !notified; })` is a concise way to make a thread wait until a condition is met in a thread-safe manner.
 
 **How it works**:
-   - `cv.wait(lock, predicate)` checks the predicate (`!sharedQueue.empty()`).
+   - `cv.wait(lock, predicate)` checks the predicate (`!notified`).
    - If the predicate returns `true`, the consumer proceeds immediately (no waiting).
-   - If the predicate returns `false` (queue is empty), the thread unlocks the mutex and waits for a `cv.notify_one()` or `cv.notify_all()` from another thread.
+   - If the predicate returns `false`, the thread unlocks the mutex and waits for a `cv.notify_one()` or `cv.notify_all()` from another thread.
    - When notified, the thread wakes up, relocks the mutex, and rechecks the predicate. If `true`, it proceeds; if `false`, it waits again.
 
 ### 💡 Use Cases
