@@ -77,7 +77,7 @@ The syntax `cv.wait(lock, [&] { return !notified; })` is a concise way to make a
    - If the predicate returns `false`, the thread unlocks the mutex and waits for a `cv.notify_one()` or `cv.notify_all()` from another thread.
    - When notified, the thread wakes up, relocks the mutex, and rechecks the predicate. If `true`, it proceeds; if `false`, it waits again.
 
-### 💡 Use Cases
+## 💡 Use Cases
 
 * **Producer-Consumer** model
 * Thread coordination (e.g., wait until config is loaded)
